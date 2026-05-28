@@ -9,6 +9,7 @@ A personal collection of reusable skills for Claude Code and other LLM tools.
 | [`interview`](interview/SKILL.md) | High-level interview to align on the shape of a plan (~3-6 questions) |
 | [`poke-holes`](poke-holes/SKILL.md) | Focused review that hunts for weak spots and hidden assumptions (~6-12 questions) |
 | [`grill-me`](grill-me/SKILL.md) | Exhaustive walk of every branch of the decision tree, ends with a full spec |
+| [`improve-architecture`](improve-architecture/SKILL.md) | Find deepening opportunities (shallow→deep modules) and present them as a visual HTML report |
 | [`to-issues`](to-issues/SKILL.md) | Break a plan, spec, or PRD into independently-grabbable issues as thin vertical slices |
 | [`implement-tdd`](implement-tdd/SKILL.md) | Build an existing plan test-first, one behavior at a time, red-green-refactor |
 | [`handoff`](handoff/SKILL.md) | Summarise the current conversation into a handoff doc for the next session |
@@ -24,6 +25,8 @@ The plan-and-build skills chain together. Pick the review depth that fits, turn 
    - **grill-me** → exhaustive, ends with `SPEC.md`
 2. **Break it down** — `to-issues` slices the plan into independently-grabbable issues.
 3. **Build it** — `implement-tdd` consumes the plan or issues and builds them test-first.
+
+**improve-architecture** feeds the front of this flow for existing codebases: it surveys the code, surfaces the strongest deepening opportunities as a visual HTML report, and stops. Take a chosen candidate into `grill-me` to design it, or `to-issues` to slice it.
 
 **handoff** supports this flow across sessions: when work spans multiple sessions or collaborators, write a handoff doc so a fresh session can pick up where the last one left off.
 
