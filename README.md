@@ -15,6 +15,7 @@ A personal collection of reusable skills for Claude Code and other LLM tools.
 | [`to-issues`](to-issues/SKILL.md) | Break a plan or spec into independently-grabbable issues as thin vertical slices |
 | [`implement-tdd`](implement-tdd/SKILL.md) | Build an existing plan test-first, one behavior at a time, red-green-refactor |
 | [`handoff`](handoff/SKILL.md) | Summarise the current conversation into a handoff doc for the next session |
+| [`to-atomic-commits`](to-atomic-commits/SKILL.md) | Split uncommitted changes into logical atomic commits, respecting detected commit conventions |
 | [`garmin`](garmin/SKILL.md) | Download Garmin Connect activity splits and summarize workouts |
 
 ### Size at a glance
@@ -29,12 +30,13 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `to-spec` | 105 | 878 | 1,400 |
 | `domain-docs` | 103 | 770 | 1,259 |
 | `garmin` | 75 | 556 | 949 |
+| `to-atomic-commits` | 81 | 591 | 937 |
 | `to-issues` | 85 | 575 | 905 |
 | `grill-me` | 30 | 338 | 535 |
 | `poke-holes` | 36 | 300 | 472 |
 | `interview` | 26 | 207 | 335 |
 | `handoff` | 24 | 173 | 257 |
-| **Total** | **703** | **6,030** | **9,504** |
+| **Total** | **784** | **6,621** | **10,441** |
 <!-- skill-sizes:end -->
 
 ### From idea to shipped code
