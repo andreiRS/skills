@@ -17,6 +17,26 @@ A personal collection of reusable skills for Claude Code and other LLM tools.
 | [`handoff`](handoff/SKILL.md) | Summarise the current conversation into a handoff doc for the next session |
 | [`garmin`](garmin/SKILL.md) | Download Garmin Connect activity splits and summarize workouts |
 
+### Size at a glance
+
+Each skill's `SKILL.md` — the instruction prose only — measured to keep us honest about conciseness. Tokens are estimated as `bytes ÷ 4`. Regenerate after any change with `bun scripts/skill-sizes.ts --write`.
+
+<!-- skill-sizes:start -->
+| Skill | Lines | Words | ~Tokens |
+|---|--:|--:|--:|
+| `implement-tdd` | 150 | 1,344 | 1,964 |
+| `improve-architecture` | 69 | 889 | 1,428 |
+| `to-spec` | 105 | 878 | 1,400 |
+| `domain-docs` | 103 | 770 | 1,259 |
+| `garmin` | 75 | 556 | 949 |
+| `to-issues` | 85 | 575 | 905 |
+| `grill-me` | 30 | 338 | 535 |
+| `poke-holes` | 36 | 300 | 472 |
+| `interview` | 26 | 207 | 335 |
+| `handoff` | 24 | 173 | 257 |
+| **Total** | **703** | **6,030** | **9,504** |
+<!-- skill-sizes:end -->
+
 ### From idea to shipped code
 
 The plan-and-build skills chain together. Pick the review depth that fits, turn the result into work, then implement it:
