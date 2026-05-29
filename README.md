@@ -12,6 +12,7 @@ A personal collection of reusable skills for Claude Code and other LLM tools.
 | [`to-spec`](to-spec/SKILL.md) | Capture the why and what into a lean six-section spec under `docs/specs/` (capture-first) |
 | [`domain-docs`](domain-docs/SKILL.md) | Maintain the `CONTEXT.md` glossary and `docs/adr/` decision records |
 | [`improve-architecture`](improve-architecture/SKILL.md) | Find deepening opportunities (shallow→deep modules) and present them as a visual HTML report |
+| [`to-html`](to-html/SKILL.md) | Render what's been discussed as a single self-contained HTML page — explainer, matrix, dashboard, cheat-sheet |
 | [`to-issues`](to-issues/SKILL.md) | Break a plan or spec into independently-grabbable issues as thin vertical slices |
 | [`implement-tdd`](implement-tdd/SKILL.md) | Build an existing plan test-first, one behavior at a time, red-green-refactor |
 | [`handoff`](handoff/SKILL.md) | Summarise the current conversation into a handoff doc for the next session |
@@ -28,6 +29,7 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `implement-tdd` | 150 | 1,344 | 1,964 |
 | `improve-architecture` | 69 | 889 | 1,428 |
 | `to-spec` | 105 | 878 | 1,400 |
+| `to-html` | 60 | 887 | 1,370 |
 | `domain-docs` | 103 | 770 | 1,259 |
 | `garmin` | 75 | 556 | 949 |
 | `to-atomic-commits` | 81 | 591 | 937 |
@@ -36,7 +38,7 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `poke-holes` | 36 | 300 | 472 |
 | `interview` | 26 | 207 | 335 |
 | `handoff` | 24 | 173 | 257 |
-| **Total** | **784** | **6,621** | **10,441** |
+| **Total** | **844** | **7,508** | **11,811** |
 <!-- skill-sizes:end -->
 
 ### From idea to shipped code
