@@ -18,6 +18,7 @@ A personal collection of reusable skills for Claude Code and other LLM tools.
 | [`handoff`](handoff/SKILL.md) | Summarise the current conversation into a handoff doc for the next session |
 | [`to-atomic-commits`](to-atomic-commits/SKILL.md) | Split uncommitted changes into logical atomic commits, respecting detected commit conventions |
 | [`garmin`](garmin/SKILL.md) | Download Garmin Connect activity splits and summarize workouts |
+| [`brand-guidelines`](brand-guidelines/SKILL.md) | Apply Andrei's personal brand colors, typography, and visual style to any rendered artifact |
 
 ### Size at a glance
 
@@ -27,18 +28,19 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | Skill | Lines | Words | ~Tokens |
 |---|--:|--:|--:|
 | `implement-tdd` | 150 | 1,344 | 1,964 |
+| `to-html` | 62 | 961 | 1,483 |
 | `improve-architecture` | 69 | 889 | 1,428 |
 | `to-spec` | 105 | 878 | 1,400 |
-| `to-html` | 60 | 887 | 1,370 |
 | `domain-docs` | 103 | 770 | 1,259 |
 | `garmin` | 75 | 556 | 949 |
 | `to-atomic-commits` | 81 | 591 | 937 |
 | `to-issues` | 85 | 575 | 905 |
+| `brand-guidelines` | 67 | 396 | 679 |
 | `grill-me` | 30 | 338 | 535 |
 | `poke-holes` | 36 | 300 | 472 |
 | `interview` | 26 | 207 | 335 |
 | `handoff` | 24 | 173 | 257 |
-| **Total** | **844** | **7,508** | **11,811** |
+| **Total** | **913** | **7,978** | **12,603** |
 <!-- skill-sizes:end -->
 
 ### From idea to shipped code
@@ -62,3 +64,10 @@ The plan-and-build skills chain together. Pick the review depth that fits, turn 
 ### Other
 
 - **garmin** → pull recent Garmin Connect activity data and summarize it.
+
+## Inspiration
+
+This collection draws on the ideas, structure, and conventions of:
+
+- **Anthropic** — the official skills repo: [anthropics/skills](https://github.com/anthropics/skills)
+- **Matt Pocock** — [mattpocock/skills](https://github.com/mattpocock/skills)

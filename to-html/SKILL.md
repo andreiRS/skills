@@ -1,6 +1,6 @@
 ---
 name: to-html
-description: Turn what's been discussed — plus the files, git history, and tool output you can read — into a single self-contained HTML page that makes a concept, comparison, or plan easier to see and explore. Use when the user wants to visualize an idea, render a discussion as a page, build a quick explainer/dashboard/cheat-sheet/annotated diff, or says "make this an HTML page / artifact". Honours plain-English directives (dark mode, cards, table, checklist, interactive) and falls back to sensible defaults. On-demand only; not for repo docs (to-spec), architecture reports (improve-architecture), or Figma work.
+description: Turn what's been discussed — plus the files, git history, and tool output you can read — into a single self-contained HTML page that makes a concept, comparison, or plan easier to see and explore. Use when the user wants to visualize an idea, render a discussion as a page, build a quick explainer/dashboard/cheat-sheet/annotated diff, or says "make this an HTML page / artifact". Honours plain-English directives (light mode, cards, table, checklist, interactive) and falls back to sensible defaults. On-demand only; not for repo docs (to-spec), architecture reports (improve-architecture), or Figma work.
 ---
 
 # to-html
@@ -34,7 +34,7 @@ Don't over-specify or ask for a config. Take plain words from the request and ap
 
 | Directive | Effect |
 |---|---|
-| `dark mode` | dark palette (default is light) |
+| `light mode` | light palette (default is dark — see Taste) |
 | `card layout` | content as a card grid, not prose |
 | `table` / `checklist` | include a comparison table / tickable items |
 | `interactive` | sliders, toggles, live recompute |
@@ -58,3 +58,5 @@ Treat the page as a living artifact, not a one-shot. Remember the path you just 
 ## Taste
 
 Make it genuinely nicer to read than the chat: clear hierarchy, generous spacing, a restrained palette, real content density without clutter. The page should look intentional, not like a default template.
+
+**Use the `brand-guidelines` skill for the visual identity** — its colour tokens, typography (Inter / JetBrains Mono), and rules are the default look for these pages. Dark mode first with a light mode alongside, headings in body-text colour, semantic colours for meaning only. Only depart from it when the user asks for a different style or the content has its own palette (e.g. an annotated diff using a project's syntax theme).
