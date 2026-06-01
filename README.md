@@ -35,12 +35,12 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `garmin` | 75 | 556 | 949 |
 | `to-atomic-commits` | 81 | 591 | 937 |
 | `to-issues` | 85 | 575 | 905 |
+| `grill-me` | 47 | 467 | 727 |
 | `brand-guidelines` | 67 | 396 | 679 |
-| `grill-me` | 30 | 338 | 535 |
-| `poke-holes` | 36 | 300 | 472 |
-| `interview` | 26 | 207 | 335 |
+| `poke-holes` | 54 | 430 | 665 |
+| `interview` | 43 | 336 | 527 |
 | `handoff` | 24 | 173 | 257 |
-| **Total** | **913** | **7,978** | **12,603** |
+| **Total** | **965** | **8,366** | **13,180** |
 <!-- skill-sizes:end -->
 
 ### From idea to shipped code
