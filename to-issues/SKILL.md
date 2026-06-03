@@ -44,9 +44,22 @@ If a slice needs a human only at one specific moment, **split it**: a small atte
 Present the breakdown as a numbered list. For each slice show:
 
 - **Title**
+- **Effort**: XS / S / M / L / XL (see anchors)
 - **Attendance**: attended / unattended
 - **Depends on**: which other slices, if any
 - **User stories covered**: if the source material has them
+
+Effort estimates the tokens/time an agent spends to complete the slice. Uncertainty (vague spec, pending decisions, unknown code) drives this up, so it's folded in rather than a separate field.
+
+<effort-anchors>
+- **XS** seconds, one obvious change, no exploration
+- **S** minutes, contained, spec is clear
+- **M** some files to discover, a few decisions all answerable from context
+- **L** lots of context to load, multiple touchpoints, back-and-forth likely
+- **XL** so much exploration or so many unknowns it should probably be split
+</effort-anchors>
+
+An L/XL slice that's big because of unknowns is the signal to split off an attended decision slice first.
 
 Then ask only about the dimensions you're least confident on (granularity, dependencies, splits/merges, attendance). Don't ask all four every time. Iterate until the user approves.
 
@@ -54,7 +67,7 @@ Then ask only about the dimensions you're least confident on (granularity, depen
 
 Detect the issue tracker from project context (`gh` CLI, Linear MCP, Jira, etc.). Labels and blocker conventions are project-specific, read them from CLAUDE.md or recent issues rather than assuming.
 
-Publish in dependency order so "Blocked by" can reference real IDs. Apply the project's triage / ready-for-AFK label unless told otherwise.
+Publish in dependency order so "Blocked by" can reference real IDs. Apply the project's triage / ready-for-AFK label unless told otherwise. Also apply a `size/XS`..`size/XL` label matching the slice's effort (create the label if the tracker lacks it).
 
 If a publish call fails mid-way, stop and report which issues were created (with IDs) and which weren't, so the user can retry, patch references manually, or roll back.
 
@@ -64,6 +77,10 @@ Use this body template:
 ## Parent
 
 Reference to the parent issue (omit if the source wasn't an existing issue).
+
+## Effort
+
+XS / S / M / L / XL — expected tokens/time for an agent to complete.
 
 ## What to build
 
