@@ -1,6 +1,6 @@
-# CONTEXT.md format
+# GLOSSARY.md format
 
-`CONTEXT.md` is the project's glossary: the canonical meaning of every domain term. It is **not** a spec, a design doc, or a place for implementation details or decisions. If you're tempted to write *how* something works or *why* a choice was made, it belongs in a spec or an ADR, not here.
+`GLOSSARY.md` is the project's glossary: the canonical meaning of every domain term. It is **not** a spec, a design doc, or a place for implementation details or decisions. If you're tempted to write *how* something works or *why* a choice was made, it belongs in a spec or an ADR, not here.
 
 ## Structure
 

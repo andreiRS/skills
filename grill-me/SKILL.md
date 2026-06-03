@@ -42,6 +42,6 @@ Technical implementation, UI/UX, data model, edge cases, failure modes, scope bo
 Stop when every branch of the decision tree is resolved and you could write the spec without further input. Then hand off rather than writing the spec yourself:
 
 - **Always** point the user at `to-spec` to capture the resolved plan into a lean spec under `docs/specs/`. The decisions are already in this conversation, so `to-spec` can structure them directly without re-asking.
-- **When fuzzy terms or hard-to-reverse decisions surfaced** during the grilling, also point at `domain-docs` to record them (a canonical glossary entry in `CONTEXT.md`, or an ADR in `docs/adr/`).
+- **When fuzzy terms or hard-to-reverse decisions surfaced** during the grilling, also point at `domain-docs` to record them (a canonical glossary entry in `GLOSSARY.md`, or an ADR in `docs/adr/`).
 
-Don't write `CONTEXT.md`, ADRs, or the spec file inline — those are the jobs of `domain-docs` and `to-spec`. Your job is to resolve the decision tree; offer to invoke them next.
+Don't write `GLOSSARY.md`, ADRs, or the spec file inline — those are the jobs of `domain-docs` and `to-spec`. Your job is to resolve the decision tree; offer to invoke them next.

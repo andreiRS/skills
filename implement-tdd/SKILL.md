@@ -77,7 +77,7 @@ Read the plan (conversation, a spec file, or an issue reference) and figure out 
 
 Either way, before writing code:
 
-- If the project has a domain glossary, `CONTEXT.md`, or `docs/adr/`, skim the relevant parts and match your test names and interface vocabulary to that language. Skip silently if none exist.
+- If the project has a domain glossary, `GLOSSARY.md`, or `docs/adr/`, skim the relevant parts and match your test names and interface vocabulary to that language. Skip silently if none exist.
 - If you are on the default branch, create a working branch.
 
 Invoking this skill is the go-ahead to build. The only approval gate is confirming slices you derived yourself.

@@ -1,13 +1,13 @@
 ---
 name: domain-docs
-description: Maintain a project's domain documentation — the CONTEXT.md glossary and docs/adr/ architecture decision records. Use when a term needs a canonical definition, when a hard-to-reverse decision should be recorded, or when another skill (grill-me, to-spec) flags something worth capturing. Works standalone or chained in the same session.
+description: Maintain a project's domain documentation — the GLOSSARY.md ubiquitous language and docs/adr/ architecture decision records. Use when a term needs a canonical definition, when a hard-to-reverse decision should be recorded, or when another skill (grill-me, to-spec) flags something worth capturing. Works standalone or chained in the same session.
 ---
 
 # Domain Docs
 
 Maintain two kinds of durable domain documentation, and nothing else:
 
-- **`CONTEXT.md`** — the project's glossary. What each term canonically means.
+- **`GLOSSARY.md`** — the project's glossary. What each term canonically means.
 - **`docs/adr/`** — architecture decision records. Why a hard-to-reverse choice was made.
 
 This skill owns the *mechanics* of both: where the files live, how they're formatted, when an entry is worth writing, and how decisions get superseded. Other skills (`grill-me`, `to-spec`) lean on it rather than re-describing any of this.
@@ -23,49 +23,49 @@ This skill does **not** write specs (`to-spec`), break work into issues (`to-iss
 
 ## File structure
 
-Most repos have a single context:
+Most repos have a single glossary at the root:
 
 ```
 /
-├── CONTEXT.md
+├── GLOSSARY.md
 ├── docs/
-│   ├── CONTEXT-FORMAT.md
 │   └── adr/
-│       ├── ADR-FORMAT.md
 │       ├── 0001-first-decision.md
 │       └── 0002-second-decision.md
 └── src/
 ```
 
-If a `CONTEXT-MAP.md` exists at the root, the repo has multiple bounded contexts. The map points to where each one lives:
+A repo with multiple bounded contexts gets one `GLOSSARY.md` per context, next to the code it describes. There is no central index file to keep in sync — the set of `GLOSSARY.md` files *is* the map:
 
 ```
 /
-├── CONTEXT-MAP.md
 ├── docs/
 │   └── adr/                          ← system-wide decisions
 ├── src/
 │   ├── ordering/
-│   │   ├── CONTEXT.md
+│   │   ├── GLOSSARY.md
 │   │   └── docs/adr/                 ← context-specific decisions
 │   └── billing/
-│       ├── CONTEXT.md
+│       ├── GLOSSARY.md
 │       └── docs/adr/
 ```
 
-When a `CONTEXT-MAP.md` is present, write a term or decision into the **most local** context that owns it; only use the root `docs/adr/` for genuinely system-wide decisions.
+When more than one `GLOSSARY.md` exists, write a term or decision into the **most local** one that owns it; only use the root `docs/adr/` for genuinely system-wide decisions. The same vocabulary can legitimately mean different things in different contexts (`account` in `ordering` need not match `account` in `billing`) — keep each definition in its own context rather than forcing a single global meaning.
+
+> A true *context map* — how bounded contexts integrate (shared kernel, customer/supplier, anti-corruption layer, …) — is a hard-to-reverse, trade-off-laden decision, so it belongs in an ADR, not a glossary.
 
 ## Create lazily
 
 Create files only when you have something to write.
 
-- No `CONTEXT.md` yet? Create it when the first term is resolved.
+- No `GLOSSARY.md` yet? Create it when the first term is resolved.
 - No `docs/adr/` yet? Create it when the first ADR is needed.
-- The format references live at `docs/CONTEXT-FORMAT.md` and `docs/adr/ADR-FORMAT.md`. If they're missing, copy them from this skill's bundled templates (`CONTEXT-FORMAT.md` and `ADR-FORMAT.md`) before adding the first entry, so every later entry has a format to follow.
 
-## The glossary (`CONTEXT.md`)
+The format references (`GLOSSARY-FORMAT.md` and `ADR-FORMAT.md`) are bundled with this skill. Read them to format entries — do **not** copy them into the target repo. They're scaffolding for this skill, not product docs; the existing entries serve as the by-example template for anyone editing later.
 
-`CONTEXT.md` is a glossary and nothing else. It is **totally devoid of implementation details**. Do not treat it as a spec, a scratch pad, or a home for decisions. Those belong in specs and ADRs respectively.
+## The glossary (`GLOSSARY.md`)
+
+`GLOSSARY.md` is a glossary and nothing else — it documents the project's ubiquitous language. It is **totally devoid of implementation details**. Do not treat it as a spec, a scratch pad, or a home for decisions. Those belong in specs and ADRs respectively.
 
 Add or sharpen a term when:
 
@@ -73,7 +73,7 @@ Add or sharpen a term when:
 - A term is vague or overloaded and a precise canonical name would remove the ambiguity.
 - A new domain concept appears that future readers won't share your context on.
 
-When you record a term, follow `docs/CONTEXT-FORMAT.md`. Keep definitions short, name relationships to other terms, and call out what a term is explicitly **not**.
+When you record a term, follow this skill's bundled `GLOSSARY-FORMAT.md`. Keep definitions short, name relationships to other terms, and call out what a term is explicitly **not**.
 
 If a new term conflicts with an existing definition, surface the conflict instead of silently overwriting: "the glossary defines `Cancellation` as X, but this usage means Y — which is canonical?" Resolve, then update.
 
@@ -87,7 +87,7 @@ Record an ADR only when **all three** are true:
 
 If any of the three is missing, skip the ADR. Most decisions don't warrant one; over-recording is its own kind of noise.
 
-When you write one, follow `docs/adr/ADR-FORMAT.md`. Number sequentially (`0001-`, `0002-`, …).
+When you write one, follow this skill's bundled `ADR-FORMAT.md`. Number sequentially (`0001-`, `0002-`, …).
 
 ### Superseding
 
@@ -101,3 +101,5 @@ The record of *why we changed our minds* is often more valuable than the decisio
 ## When you're done
 
 Briefly list the files you created or changed, and the terms/ADRs added. If something surfaced that belongs in a spec rather than the glossary, say so and point at `to-spec` rather than recording it here.
+</content>
+</invoke>

@@ -29,7 +29,7 @@ Detect the source the way `to-issues` does and normalize everything into one ord
 
 For each item capture: **title**, **acceptance criteria**, **dependency order** (blocked-by), **attendance** (attended / unattended), and **complexity** if the source carries a label or estimate.
 
-If the project has a domain glossary, `CONTEXT.md`, or `docs/adr/`, skim the relevant parts so the slices you pass down use the project's vocabulary. If you are on the default branch, create one working branch for the whole batch.
+If the project has a domain glossary, `GLOSSARY.md`, or `docs/adr/`, skim the relevant parts so the slices you pass down use the project's vocabulary. If you are on the default branch, create one working branch for the whole batch.
 
 ## 2. Order and gate the batch
 

@@ -51,7 +51,7 @@ Observable signals that the Problem is actually solved. How we'll know it worked
 ## Constraints *(optional)*
 
 Non-negotiables the solution must respect: must use X, can't touch Y, perf /
-security / compliance bars. Reference CONTEXT.md for domain terms rather than
+security / compliance bars. Reference GLOSSARY.md for domain terms rather than
 redefining them.
 
 ## Open Questions / Risks *(optional)*
@@ -71,7 +71,7 @@ Honest unknowns and risks. Each becomes a decision point downstream.
 ### 1. Read the surroundings
 
 - If `docs/specs/product.md` exists and you're writing a *feature* spec, read it for context — inherit its domain framing and don't restate the product-level problem. Do **not** add a link to it (files get renamed and deleted; avoid link rot).
-- If `CONTEXT.md` or `docs/adr/` exist, read them so the spec uses the project's real terms and the Solution doesn't contradict a recorded decision.
+- If `GLOSSARY.md` or `docs/adr/` exist, read them so the spec uses the project's real terms and the Solution doesn't contradict a recorded decision.
 
 ### 2. Decide the target file (infer, then confirm)
 
@@ -98,7 +98,7 @@ While capturing, watch for two things and **flag them without acting**:
 - a **fuzzy or overloaded term** → suggest the user run `domain-docs` to give it a canonical definition.
 - the Solution resting on a **hard-to-reverse decision** → note it (often as an Open Question) and suggest recording it as an ADR via `domain-docs`.
 
-Never write `CONTEXT.md` or ADRs yourself — that's `domain-docs`' job. Stay a pure capture tool.
+Never write `GLOSSARY.md` or ADRs yourself — that's `domain-docs`' job. Stay a pure capture tool.
 
 ### 6. Write and hand off
 

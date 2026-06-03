@@ -35,7 +35,7 @@ Three principles do most of the work:
 - If the user named an area, module, or directory, focus there.
 - Otherwise, sweep the whole repo and surface the strongest candidates wherever they are.
 
-If `CONTEXT.md` (a domain glossary) or `docs/adr/` (architecture decision records) exist, read the ones relevant to your scope first. Use that vocabulary for the domain, and respect ADRs — don't re-litigate decisions already recorded. **These are optional**: if they're absent, infer the domain language from the code and carry on. Never create or edit them.
+If `GLOSSARY.md` (a domain glossary) or `docs/adr/` (architecture decision records) exist, read the ones relevant to your scope first. Use that vocabulary for the domain, and respect ADRs — don't re-litigate decisions already recorded. **These are optional**: if they're absent, infer the domain language from the code and carry on. Never create or edit them.
 
 ### 2. Explore
 
@@ -59,7 +59,7 @@ Write a self-contained HTML file to the OS temp dir so nothing lands in the repo
 
 Two things to carry in from the rest of this skill:
 
-- **Vocabulary** — domain nouns for what the code is about (if `CONTEXT.md` defines "Order," say "the Order intake module," not "the FooBarHandler" and not "the Order service"), and the **Glossary above** for the architecture.
+- **Vocabulary** — domain nouns for what the code is about (if `GLOSSARY.md` defines "Order," say "the Order intake module," not "the FooBarHandler" and not "the Order service"), and the **Glossary above** for the architecture.
 - **No design** — describe the deepening in plain English; **no interface signatures, no code**. Design is a later step.
 
 If `docs/adr/` exists and a candidate contradicts a recorded ADR, surface it only when the friction warrants reopening the decision, flagged in the card per HTML-REPORT.md. Don't list every refactor an ADR forbids.

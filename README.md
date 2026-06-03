@@ -10,7 +10,7 @@ A personal collection of reusable skills for Claude Code and other LLM tools.
 | [`poke-holes`](poke-holes/SKILL.md) | Focused review that hunts for weak spots and hidden assumptions (~6-12 questions) |
 | [`grill-me`](grill-me/SKILL.md) | Exhaustive walk of every branch of the decision tree, hands off to `to-spec` |
 | [`to-spec`](to-spec/SKILL.md) | Capture the why and what into a lean six-section spec under `docs/specs/` (capture-first) |
-| [`domain-docs`](domain-docs/SKILL.md) | Maintain the `CONTEXT.md` glossary and `docs/adr/` decision records |
+| [`domain-docs`](domain-docs/SKILL.md) | Maintain the `GLOSSARY.md` glossary and `docs/adr/` decision records |
 | [`improve-architecture`](improve-architecture/SKILL.md) | Find deepening opportunities (shallow→deep modules) and present them as a visual HTML report |
 | [`to-html`](to-html/SKILL.md) | Render what's been discussed as a single self-contained HTML page — explainer, matrix, dashboard, cheat-sheet |
 | [`to-issues`](to-issues/SKILL.md) | Break a plan or spec into independently-grabbable issues as thin vertical slices |
@@ -29,20 +29,20 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | Skill | Lines | Words | ~Tokens |
 |---|--:|--:|--:|
 | `orchestrate-tdd` | 142 | 1,585 | 2,455 |
-| `implement-tdd` | 150 | 1,344 | 1,964 |
+| `implement-tdd` | 150 | 1,344 | 1,965 |
 | `to-html` | 62 | 961 | 1,483 |
 | `improve-architecture` | 69 | 889 | 1,428 |
-| `to-spec` | 105 | 878 | 1,400 |
-| `domain-docs` | 103 | 770 | 1,259 |
+| `domain-docs` | 105 | 872 | 1,409 |
+| `to-spec` | 105 | 878 | 1,401 |
 | `garmin` | 75 | 556 | 949 |
 | `to-atomic-commits` | 81 | 591 | 937 |
 | `to-issues` | 85 | 575 | 905 |
-| `grill-me` | 47 | 467 | 727 |
+| `grill-me` | 47 | 467 | 728 |
 | `brand-guidelines` | 67 | 396 | 679 |
 | `poke-holes` | 54 | 430 | 665 |
 | `interview` | 43 | 336 | 527 |
 | `handoff` | 24 | 173 | 257 |
-| **Total** | **1,107** | **9,951** | **15,635** |
+| **Total** | **1,109** | **10,053** | **15,788** |
 <!-- skill-sizes:end -->
 
 ### From idea to shipped code
@@ -59,7 +59,7 @@ The plan-and-build skills chain together. Pick the review depth that fits, turn 
 
 For a batch of issues you'd rather not build by hand, **orchestrate-tdd** sits one level above `implement-tdd`: instead of coding, it spawns one agent per slice (running `implement-tdd` on that slice), sizes each to the cheapest model that fits, then independently re-runs the tests and reviews the diff before advancing. Reviews are tier-gated (skip trivial, `simplify` for simple, `code-review` for complex, plus a final cross-slice pass), failures retry then escalate to the most-capable model, and it writes status back to the tracker as each slice lands. Use it to drive a whole `to-issues` backlog to a reviewed branch autonomously.
 
-**domain-docs** runs alongside this flow as the keeper of durable domain knowledge: the `CONTEXT.md` glossary and `docs/adr/` decision records. `grill-me` and `to-spec` flag fuzzy terms and hard-to-reverse decisions and point here to record them; it also works standalone.
+**domain-docs** runs alongside this flow as the keeper of durable domain knowledge: the `GLOSSARY.md` glossary and `docs/adr/` decision records. `grill-me` and `to-spec` flag fuzzy terms and hard-to-reverse decisions and point here to record them; it also works standalone.
 
 **improve-architecture** feeds the front of this flow for existing codebases: it surveys the code, surfaces the strongest deepening opportunities as a visual HTML report, and stops. Take a chosen candidate into `grill-me` to design it, or `to-issues` to slice it.
 
