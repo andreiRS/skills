@@ -1,6 +1,6 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://i.ibb.co/pB8hmyp1/skills-header-dark.png">
-  <img alt="Skills — from idea to shipped code" src="https://i.ibb.co/m5N4VVTD/skills-header-light.png">
+  <source media="(prefers-color-scheme: dark)" srcset="https://i.ibb.co/S70hpx4q/skills-header-dark.png">
+  <img alt="Skills — from idea to shipped code" src="https://i.ibb.co/pvk4mZKx/skills-header-light.png">
 </picture>
 
 # Skills
