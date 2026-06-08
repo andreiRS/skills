@@ -1,6 +1,11 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://i.ibb.co/pB8hmyp1/skills-header-dark.png">
+  <img alt="Skills — from idea to shipped code" src="https://i.ibb.co/m5N4VVTD/skills-header-light.png">
+</picture>
+
 # Skills
 
-A personal collection of reusable skills for Claude Code and other LLM tools.
+A personal collection of reusable skills for Claude Code and other LLM tools. The source for the banner above lives in [`assets/skills-map.html`](assets/skills-map.html).
 
 ## Skills
 
