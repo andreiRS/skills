@@ -40,18 +40,19 @@ Sort by dependency order. Then, for each slice, decide who runs it:
 
 ## 3. Size each slice and pick the model
 
+**Default to the most capable model (Opus). Drop to a cheaper, faster model only for slices that are unambiguously trivial.** Getting a real slice right on the first pass is cheaper end-to-end than a cheap miss plus a re-spawn, a failed verification, and a fix-up cycle — so the bar to leave Opus is high, and any doubt resolves toward Opus.
+
 Before spawning, set the model tier:
 
-1. **If the issue carries an explicit complexity label/field, honor it.** (`complexity: trivial|simple|complex`, a story-point estimate, or similar.)
-2. **Otherwise judge from the issue text plus a quick codebase peek**, mapping effort to the model tier:
+1. **If the issue carries an explicit complexity label/field, honor it** (`complexity: trivial|simple|complex`, a story-point estimate, or similar) — but map anything above *trivial* to Opus.
+2. **Otherwise judge from the issue text plus a quick codebase peek.** Use the cheap tier only when *every* trivial signal holds; if even one points to real work or judgment, use Opus.
 
-| Tier | Model | Signals |
+| Tier | Model | Use when (ALL must hold) |
 |---|---|---|
-| Trivial | cheapest/fastest tier | Single file, well-trodden pattern, ~one behavior, no design decisions |
-| Simple | mid tier | Typical feature slice, a few files, clear interface, no novel design |
-| Complex | most-capable tier (e.g. Opus) | Cross-cutting, ambiguous design, tricky algorithm/concurrency, or anything the agent must *design* rather than just implement |
+| Trivial | cheapest/fastest tier | Single file • well-trodden pattern already in the repo • ~one behavior • no design or interface decisions • nothing to figure out, only to type |
+| Everything else | most-capable tier (Opus) | Anything not unambiguously trivial — multiple files, a new interface, an algorithm, cross-cutting changes, any design judgment, or simply any uncertainty about scope |
 
-Use whatever model family the harness exposes; the point is matching effort to capability, not the specific names. State the tier and a one-line reason before spawning, e.g. `Slice 3 "date-range export filter" → mid tier (typical feature slice, clear interface)`.
+Use whatever model family the harness exposes for these two tiers; the point is "Opus unless trivial", not the specific names. State the tier and a one-line reason before spawning, e.g. `Slice 3 "date-range export filter" → Opus (new interface, touches export + query layers)` or `Slice 5 "add --json flag to existing list command" → cheap tier (single file, mirrors the existing --yaml flag)`.
 
 ## 4. Spawn the slice agent
 
@@ -81,10 +82,11 @@ A fresh-eyes review catches what the implementer is blind to. The refactor step 
 | Tier | Review |
 |---|---|
 | Trivial | **Skip** — your verification diff check is enough |
-| Simple | **Light**: spawn a reviewer that checks tests, then runs `simplify` (quality — reuse, duplication, dead code) |
-| Complex | **Full**: spawn a reviewer that checks tests, then runs `code-review` (correctness bugs + complexity challenge) |
+| Everything else | **Full**: spawn a reviewer that checks tests, then runs `code-review` (correctness bugs + complexity challenge) |
 
-Override with `--no-review` (force skip) or `--review-all` (force full review on every slice).
+**Reviewer and fix-up agents run at Opus, regardless of slice tier.** Review is where the most-capable model pays off most — catching a subtle test or correctness flaw here is what saves the expensive downstream rework. (The only "cheap" path is the trivial-skip above, where there is no reviewer at all.)
+
+Override with `--no-review` (force skip) or `--review-all` (force full review on every slice, including trivial).
 
 **Review the tests first.** In TDD the tests are the spec and the most valuable artifact — a bad test is worse than messy code, because it gives false confidence and survives the refactor it should have caught. Before the code-quality pass, the reviewer challenges: do tests assert behavior through the public interface (not implementation)? Was the RED real? Are edge cases and failure modes covered? Is anything over-mocked? Then it reviews the implementation.
 
@@ -96,7 +98,7 @@ worth fixing       → spawn a fix-up cycle (fresh agent, still TDD, stay green)
 out of scope       → file as a new tracker issue, advance
 ```
 
-A fix-up cycle is a **fresh** slice-agent spawn at the slice's tier (fresh eyes — the original agent created the issue), scoped to the findings. It stays test-first and lands changes as a **separate** `refactor(slice): address review` commit on top of the slice commit — the way a developer addresses review comments in a team. For a **correctness bug**, the fix-up first writes a test that reproduces the bug and *fails* (real RED), then makes it green, so the bug can never silently regress.
+A fix-up cycle is a **fresh** slice-agent spawn at Opus (fresh eyes — the original agent created the issue; and a review finding is exactly the kind of judgment call worth the best model), scoped to the findings. It stays test-first and lands changes as a **separate** `refactor(slice): address review` commit on top of the slice commit — the way a developer addresses review comments in a team. For a **correctness bug**, the fix-up first writes a test that reproduces the bug and *fails* (real RED), then makes it green, so the bug can never silently regress.
 
 After the fix-up commit, **re-verify only (step 5) — do not re-review the same slice.** This is a hard stop against review/fix spirals; any issue the fix-up itself introduces is caught by verification or the final batch review. File out-of-scope findings as new issues on the tracker (so nothing is lost and they re-enter the normal flow) rather than fixing them here.
 
@@ -105,12 +107,14 @@ After the fix-up commit, **re-verify only (step 5) — do not re-review the same
 If the agent returns red, or your verification fails:
 
 ```
-1. Re-spawn ONCE at the same tier, with the failure context
-   (what failed, what criterion is unmet, what the suite reported).
-2. Still failing → escalate straight to the most-capable tier and retry
-   (skip the middle — a repeated miss is worth the cost of the best model).
-3. Still failing → STOP and surface the blocker to the user.
+1. If the slice ran on the cheap tier, re-spawn at Opus with the failure
+   context (the miss means it wasn't trivial).
+   If it already ran on Opus, re-spawn ONCE more at Opus with the failure
+   context (what failed, what criterion is unmet, what the suite reported).
+2. Still failing → STOP and surface the blocker to the user.
 ```
+
+A repeated miss on Opus usually means the issue is under-specified or wrong, not that another model would fix it — so escalation tops out at one Opus retry, then a human.
 
 Never loop forever. Never silently skip a slice and move on.
 
