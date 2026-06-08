@@ -1,4 +1,4 @@
-// Tiny visual-companion server.
+// Tiny show-it visual-companion server.
 // Serves frame.html at /, and the current screen fragment at /screen.
 // The agent writes a fragment to $SCREEN_DIR/screen.html; the page polls /screen
 // every 800ms and swaps it in. Run: SCREEN_DIR=... bun server.ts
@@ -26,4 +26,4 @@ const server = Bun.serve({
 const html = (body: string) =>
   new Response(body, { headers: { "content-type": "text/html; charset=utf-8" } });
 
-console.log(`visual-companion at http://localhost:${server.port}  (screen dir: ${dir})`);
+console.log(`show-it: visual companion at http://localhost:${server.port}  (screen dir: ${dir})`);

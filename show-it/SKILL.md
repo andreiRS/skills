@@ -1,11 +1,11 @@
 ---
-name: visual-companion
-description: Show options, mockups, and diagrams in a live browser instead of describing them in text. Opens a local page that auto-refreshes as you write HTML and sends the user's clicks back. Use mid-brainstorm or interview when a choice is visual (which layout, compare two designs) and seeing beats reading. Pairs with interview, grill-me, and to-spec.
+name: show-it
+description: Show ideas in a live browser instead of describing them in text: options with a recommendation, mockups, comparisons, charts, diagrams. Opens a local page that auto-refreshes as you write HTML; the user clicks to highlight a choice and tells you in the terminal. Use mid-interview or grill-me when a choice is visual (which layout, compare two designs) and seeing beats reading. Triggers on "show it", "visualize this", "use the visual companion".
 ---
 
-# visual-companion
+# show-it
 
-A browser-based visual aid for brainstorming. Some questions are easier to answer by looking than by reading: which layout, which color direction, how two designs compare side by side. This skill opens a local web page, lets you push HTML mockups to it, and reads back what the user clicks. It is a tool, not a process. Reach for it from any brainstorming or interview flow when a question is visual, then return to the terminal for everything else.
+A browser-based visual aid for brainstorming, the visual companion to the questioning skills. Some questions are easier to answer by looking than by reading: which layout, which color direction, how two designs compare side by side. This skill opens a local web page and lets you push HTML to it; the user clicks an option to highlight it and tells you their pick in the terminal. It is a tool, not a process. Reach for it from any brainstorming or interview flow when a question is visual, then return to the terminal for everything else.
 
 ## Browser or terminal?
 
@@ -31,7 +31,7 @@ Pick a screen directory (a scratch dir is fine, e.g. `/tmp/vc-<something>`) and 
 SCREEN_DIR=/tmp/vc-demo PORT=52777 bun <skill-dir>/scripts/server.ts
 ```
 
-It prints `visual-companion at http://localhost:52777`. Give the user that URL **once**; the tab never changes address after that. Omit `PORT` to let it pick a free port (read the printed line for the number). Stop it when the visual work is done by killing the process (`lsof -ti tcp:52777 | xargs kill`).
+It prints `show-it: visual companion at http://localhost:52777`. Give the user that URL **once**; the tab never changes address after that. Omit `PORT` to let it pick a free port (read the printed line for the number). Stop it when the visual work is done by killing the process (`lsof -ti tcp:52777 | xargs kill`).
 
 The server reads `scripts/frame.html` at startup and serves it at `/`. The frame owns the page shell, the brand styling, and the poll loop. If you edit `frame.html`, restart the server and the user reloads once. You never write the frame during a session, only screen fragments.
 
