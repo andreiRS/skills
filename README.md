@@ -16,6 +16,8 @@ A personal collection of reusable skills for Claude Code and other LLM tools.
 | [`to-issues`](to-issues/SKILL.md) | Break a plan or spec into independently-grabbable issues as thin vertical slices |
 | [`implement-tdd`](implement-tdd/SKILL.md) | Build an existing plan test-first, one behavior at a time, red-green-refactor |
 | [`orchestrate-tdd`](orchestrate-tdd/SKILL.md) | Drive a list of issues to completion by spawning one TDD agent per slice, sizing the model, verifying and reviewing each result |
+| [`prove-it`](prove-it/SKILL.md) | Drive the running app like a human to confirm the changed flows work end to end (pass/fail verdict) |
+| [`break-it`](break-it/SKILL.md) | Adversarial exploratory testing — drive the running app to find the bugs a human QA would catch |
 | [`handoff`](handoff/SKILL.md) | Summarise the current conversation into a handoff doc for the next session |
 | [`to-atomic-commits`](to-atomic-commits/SKILL.md) | Split uncommitted changes into logical atomic commits, respecting detected commit conventions |
 | [`garmin`](garmin/SKILL.md) | Download Garmin Connect activity splits and summarize workouts |
@@ -28,7 +30,7 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 <!-- skill-sizes:start -->
 | Skill | Lines | Words | ~Tokens |
 |---|--:|--:|--:|
-| `orchestrate-tdd` | 142 | 1,585 | 2,455 |
+| `orchestrate-tdd` | 146 | 1,782 | 2,729 |
 | `implement-tdd` | 150 | 1,344 | 1,965 |
 | `to-html` | 62 | 961 | 1,483 |
 | `improve-architecture` | 69 | 889 | 1,428 |
@@ -38,11 +40,13 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `garmin` | 75 | 556 | 949 |
 | `to-atomic-commits` | 81 | 591 | 937 |
 | `brand-guidelines` | 67 | 396 | 679 |
+| `break-it` | 37 | 386 | 619 |
 | `grill-me` | 31 | 359 | 567 |
 | `poke-holes` | 37 | 321 | 503 |
+| `prove-it` | 29 | 328 | 493 |
 | `interview` | 27 | 228 | 367 |
 | `handoff` | 24 | 173 | 257 |
-| **Total** | **1,077** | **9,881** | **15,532** |
+| **Total** | **1,147** | **10,792** | **16,918** |
 <!-- skill-sizes:end -->
 
 ### From idea to shipped code
@@ -56,6 +60,7 @@ The plan-and-build skills chain together. Pick the review depth that fits, turn 
 2. **Capture it** — `to-spec` structures the resolved plan into a lean six-section spec under `docs/specs/`. Capture-first: it records what's been decided, asking only for missing required pieces.
 3. **Break it down** — `to-issues` slices the spec into independently-grabbable issues.
 4. **Build it** — `implement-tdd` consumes the spec or issues and builds them test-first.
+5. **Check it in the real app** — once it's built and the suite is green, drive the running app like a human: **prove-it** confirms the changed flows work end to end; **break-it** throws nasty inputs and edge cases at them to find what a human QA would catch. Distinct from the test suite (`implement-tdd`/`orchestrate-tdd`) — this is the manual, browser-driven pass.
 
 For a batch of issues you'd rather not build by hand, **orchestrate-tdd** sits one level above `implement-tdd`: instead of coding, it spawns one agent per slice (running `implement-tdd` on that slice), sizes each to the cheapest model that fits, then independently re-runs the tests and reviews the diff before advancing. Reviews are tier-gated (skip trivial, `simplify` for simple, `code-review` for complex, plus a final cross-slice pass), failures retry then escalate to the most-capable model, and it writes status back to the tracker as each slice lands. Use it to drive a whole `to-issues` backlog to a reviewed branch autonomously.
 
