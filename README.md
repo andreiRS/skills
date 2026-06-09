@@ -42,8 +42,8 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `improve-architecture` | 69 | 889 | 1,428 |
 | `domain-docs` | 105 | 872 | 1,409 |
 | `to-spec` | 105 | 878 | 1,401 |
+| `garmin` | 76 | 761 | 1,268 |
 | `to-issues` | 102 | 728 | 1,132 |
-| `garmin` | 75 | 556 | 949 |
 | `to-atomic-commits` | 81 | 591 | 937 |
 | `brand-guidelines` | 67 | 396 | 679 |
 | `break-it` | 37 | 386 | 619 |
@@ -52,8 +52,20 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `prove-it` | 29 | 328 | 493 |
 | `interview` | 27 | 228 | 367 |
 | `handoff` | 24 | 173 | 257 |
-| **Total** | **1,207** | **11,824** | **18,479** |
+| **Total** | **1,208** | **12,029** | **18,798** |
 <!-- skill-sizes:end -->
+
+### Requirements
+
+Most skills are prose-only and need nothing beyond Claude. These few shell out to external tools — install them before use:
+
+| Tool | Used by | Install |
+|---|---|---|
+| `bun` | `garmin`, `show-it`, installing `agent-browser` | [bun.sh](https://bun.sh) |
+| [`agent-browser`](https://agent-browser.dev) | `garmin`, `prove-it`, `break-it` | `bun add -g agent-browser && agent-browser install` |
+| Google Chrome (real app) | `garmin` | [google.com/chrome](https://www.google.com/chrome/) |
+
+`garmin` drives real Chrome with a persistent authenticated profile (to pass Garmin's Cloudflare bot check) and always runs headed — see its [SKILL.md](garmin/SKILL.md) for the one-time sign-in.
 
 ### From idea to shipped code
 
