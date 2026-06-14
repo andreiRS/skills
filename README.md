@@ -98,3 +98,7 @@ This collection draws on the ideas, structure, and conventions of:
 
 - **Anthropic** — the official skills repo: [anthropics/skills](https://github.com/anthropics/skills)
 - **Matt Pocock** — [mattpocock/skills](https://github.com/mattpocock/skills)
+
+## Connect
+
+Built by Razvan Andrei Surdu in Europe — [surdu.eu](https://surdu.eu/) · [github.com/andreiRS](https://github.com/andreiRS)
