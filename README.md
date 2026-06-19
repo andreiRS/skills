@@ -36,13 +36,14 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | Skill | Lines | Words | ~Tokens |
 |---|--:|--:|--:|
 | `orchestrate-tdd` | 146 | 1,782 | 2,729 |
+| `voicebox (plugin)` | 78 | 1,268 | 2,000 |
 | `implement-tdd` | 150 | 1,344 | 1,965 |
 | `show-it` | 60 | 1,032 | 1,561 |
 | `to-html` | 62 | 961 | 1,483 |
 | `improve-architecture` | 69 | 889 | 1,428 |
 | `domain-docs` | 105 | 872 | 1,409 |
 | `to-spec` | 105 | 878 | 1,401 |
-| `garmin` | 76 | 761 | 1,268 |
+| `garmin` | 76 | 761 | 1,269 |
 | `to-issues` | 102 | 728 | 1,132 |
 | `to-atomic-commits` | 81 | 591 | 937 |
 | `brand-guidelines` | 67 | 396 | 679 |
@@ -52,7 +53,7 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `prove-it` | 29 | 328 | 493 |
 | `interview` | 27 | 228 | 367 |
 | `handoff` | 24 | 173 | 257 |
-| **Total** | **1,208** | **12,029** | **18,798** |
+| **Total** | **1,286** | **13,297** | **20,799** |
 <!-- skill-sizes:end -->
 
 ### Requirements

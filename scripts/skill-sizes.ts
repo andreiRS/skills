@@ -30,11 +30,30 @@ function measure(skillMd: string): Omit<Row, "skill"> {
 }
 
 // Every top-level dir that contains a SKILL.md is a skill.
-const rows: Row[] = readdirSync(ROOT, { withFileTypes: true })
+const topLevel = readdirSync(ROOT, { withFileTypes: true })
   .filter((e) => e.isDirectory() && e.name !== ".git")
-  .map((e) => join(ROOT, e.name, "SKILL.md"))
-  .filter((p) => { try { return statSync(p).isFile(); } catch { return false; } })
-  .map((p) => ({ skill: p.split("/").slice(-2)[0], ...measure(p) }))
+  .map((e) => ({ name: e.name, md: join(ROOT, e.name, "SKILL.md") }));
+
+// Skills bundled inside marketplace plugins: marketplace/plugins/<p>/skills/<s>/SKILL.md
+const PLUGINS = join(ROOT, "marketplace", "plugins");
+const pluginSkills = (() => {
+  try {
+    return readdirSync(PLUGINS, { withFileTypes: true })
+      .filter((p) => p.isDirectory())
+      .flatMap((p) => {
+        const skillsDir = join(PLUGINS, p.name, "skills");
+        try {
+          return readdirSync(skillsDir, { withFileTypes: true })
+            .filter((s) => s.isDirectory())
+            .map((s) => ({ name: `${s.name} (plugin)`, md: join(skillsDir, s.name, "SKILL.md") }));
+        } catch { return []; }
+      });
+  } catch { return []; }
+})();
+
+const rows: Row[] = [...topLevel, ...pluginSkills]
+  .filter((e) => { try { return statSync(e.md).isFile(); } catch { return false; } })
+  .map((e) => ({ skill: e.name, ...measure(e.md) }))
   .sort((a, b) => b.tokens - a.tokens);
 
 const n = (x: number) => x.toLocaleString("en-US");
