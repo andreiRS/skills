@@ -8,8 +8,8 @@
   },
   "plugins": [
     {
-      "name": "voicebox",
-      "source": "./plugins/voicebox",
+      "name": "say-it",
+      "source": "./plugins/say-it",
       "category": "productivity"
     }
   ]

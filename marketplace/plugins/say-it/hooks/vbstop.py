@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Stop hook: enforce that Claude spoke this turn when voicebox mode is `all`.
+"""Stop hook: enforce that Claude spoke this turn when say-it mode is `on`.
 
 Registered as a `Stop` hook by this plugin's hooks/hooks.json. The harness runs
 it every time Claude finishes a turn and feeds it a JSON payload on stdin:
   { session_id, transcript_path, stop_hook_active, cwd, hook_event_name }
 
 Logic:
-  - Read the mode from /tmp/voicebox-mode (written by the /voicebox toggle).
-    Only `all` is enforced; `auto`/`mute`/missing -> allow stop (exit 0).
+  - Read the mode from /tmp/say-it-mode (written by the /say-it toggle).
+    Only `on` is enforced; `off`/missing -> allow stop (exit 0).
   - If stop_hook_active is already set, allow stop (avoid infinite re-prompts).
   - Scan the transcript back to the last real user turn. If any
     `voicebox_speak` tool call happened in this turn -> allow stop.
@@ -20,7 +20,7 @@ import json
 import socket
 import sys
 
-MODE_FILE = "/tmp/voicebox-mode"
+MODE_FILE = "/tmp/say-it-mode"
 VOICEBOX_HOST = ("127.0.0.1", 17493)
 
 
@@ -57,9 +57,9 @@ def main():
         with open(MODE_FILE) as f:
             mode = f.read().strip()
     except Exception:
-        mode = "auto"
+        mode = "off"
 
-    if mode != "all":
+    if mode != "on":
         allow()
 
     transcript_path = payload.get("transcript_path")
@@ -97,9 +97,9 @@ def main():
         allow()
 
     block(
-        "Voicebox mode is `all` but you ended this turn without calling "
+        "say-it mode is `on` but you ended this turn without calling "
         "voicebox_speak. Speak a short natural gist of your reply now "
-        "(see the voicebox skill: voice owns the gist, ~2 sentences), then stop."
+        "(see the say-it skill: voice owns the gist, ~2 sentences), then stop."
     )
 
 
