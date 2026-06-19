@@ -6,7 +6,9 @@ it every time Claude finishes a turn and feeds it a JSON payload on stdin:
   { session_id, transcript_path, stop_hook_active, cwd, hook_event_name }
 
 Logic:
-  - Read the mode from /tmp/say-it-mode (written by the /say-it toggle).
+  - Read the mode from the per-project flag file (written by the /say-it
+    toggle). The path is /tmp/say-it-mode-<sha1(cwd)[:12]> so voice state is
+    isolated per project; the skill derives the identical key from $PWD.
     Only `on` is enforced; `off`/missing -> allow stop (exit 0).
   - If stop_hook_active is already set, allow stop (avoid infinite re-prompts).
   - Scan the transcript back to the last real user turn. If any
@@ -16,12 +18,20 @@ Logic:
 
 Fail-open: any error -> allow stop. A voice nag must never wedge a session.
 """
+import hashlib
 import json
 import socket
 import sys
 
-MODE_FILE = "/tmp/say-it-mode"
 VOICEBOX_HOST = ("127.0.0.1", 17493)
+
+
+def mode_file(cwd):
+    """Per-project flag path. The /say-it skill writes the same path from
+    $PWD (`printf %s "$PWD" | shasum | cut -c1-12`), so on/off state never
+    bleeds across projects/sessions the way a single global file did."""
+    key = hashlib.sha1((cwd or "").encode()).hexdigest()[:12]
+    return "/tmp/say-it-mode-" + key
 
 
 def voicebox_reachable():
@@ -54,7 +64,7 @@ def main():
         allow()
 
     try:
-        with open(MODE_FILE) as f:
+        with open(mode_file(payload.get("cwd", ""))) as f:
             mode = f.read().strip()
     except Exception:
         mode = "off"
