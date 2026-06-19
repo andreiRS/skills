@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Visual Companion</title>
+  <title>show-it</title>
   <!-- Loaded once. Fragments can use Tailwind utility classes and Chart.js. -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -36,24 +36,6 @@
     .subtitle { color: var(--muted); margin-bottom: 2rem; }
     code, pre { font-family: "JetBrains Mono", monospace; }
 
-    /* Selectable options. Recommended = gold callout, selected = blue. */
-    .options { display: flex; flex-direction: column; gap: 1rem; }
-    .option {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
-      padding: 1.1rem 1.3rem; cursor: pointer; display: flex; gap: 1rem;
-      align-items: flex-start; transition: border-color .15s;
-    }
-    .option:hover { border-color: var(--info); }
-    .option.selected { border-color: var(--info); border-width: 2px; padding: calc(1.1rem - 1px) calc(1.3rem - 1px); }
-    .option .letter {
-      background: var(--bg); color: var(--muted); width: 1.8rem; height: 1.8rem;
-      border-radius: 6px; display: flex; align-items: center; justify-content: center;
-      font-weight: 600; flex-shrink: 0;
-    }
-    .option.selected .letter { background: var(--info); color: var(--bg); }
-    .option .recommended { font-size: .7rem; color: var(--highlight); font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
-    .option p { color: var(--muted); font-size: .92rem; }
-
     /* Generic panel for charts, mockups, anything else. */
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.3rem; margin-top: 1.75rem; }
     .card-title { color: var(--muted); font-size: .85rem; font-weight: 600; margin-bottom: .75rem; }
@@ -79,13 +61,6 @@
         if (text !== last) { last = text; setContent(text); }
       } catch (e) {}
     }
-    // Click highlights an option to help thinking; the human names it in the terminal.
-    document.addEventListener("click", (e) => {
-      const el = e.target.closest("[data-choice]");
-      if (!el) return;
-      el.parentElement.querySelectorAll("[data-choice]").forEach((o) => o.classList.remove("selected"));
-      el.classList.add("selected");
-    });
     setInterval(poll, 800);
     poll();
   </script>

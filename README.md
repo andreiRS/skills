@@ -18,6 +18,7 @@ A personal collection of reusable skills for Claude Code and other LLM tools. Th
 | [`domain-docs`](domain-docs/SKILL.md) | Maintain the `GLOSSARY.md` glossary and `docs/adr/` decision records |
 | [`improve-architecture`](improve-architecture/SKILL.md) | Find deepening opportunities (shallow→deep modules) and present them as a visual HTML report |
 | [`to-html`](to-html/SKILL.md) | Render what's been discussed as a single self-contained HTML page — explainer, matrix, dashboard, cheat-sheet |
+| [`show-it`](show-it/SKILL.md) | Show an idea in a live auto-refreshing browser page — mockups, comparisons, charts, layouts — so a picture lands it faster than a paragraph |
 | [`to-issues`](to-issues/SKILL.md) | Break a plan or spec into independently-grabbable issues as thin vertical slices |
 | [`implement-tdd`](implement-tdd/SKILL.md) | Build an existing plan test-first, one behavior at a time, red-green-refactor |
 | [`orchestrate-tdd`](orchestrate-tdd/SKILL.md) | Drive a list of issues to completion by spawning one TDD agent per slice, sizing the model, verifying and reviewing each result |
@@ -27,6 +28,7 @@ A personal collection of reusable skills for Claude Code and other LLM tools. Th
 | [`to-atomic-commits`](to-atomic-commits/SKILL.md) | Split uncommitted changes into logical atomic commits, respecting detected commit conventions |
 | [`garmin`](garmin/SKILL.md) | Download Garmin Connect activity splits and summarize workouts |
 | [`brand-guidelines`](brand-guidelines/SKILL.md) | Apply Andrei's personal brand colors, typography, and visual style to any rendered artifact |
+| [`say-it`](marketplace/plugins/say-it/skills/say-it/SKILL.md) (plugin) | Let Claude answer out loud via the local Voicebox app; off by default, toggled per project |
 
 ### Size at a glance
 
@@ -38,9 +40,9 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `orchestrate-tdd` | 146 | 1,782 | 2,729 |
 | `say-it (plugin)` | 73 | 1,499 | 2,325 |
 | `implement-tdd` | 150 | 1,344 | 1,965 |
-| `show-it` | 60 | 1,032 | 1,561 |
 | `to-html` | 62 | 961 | 1,483 |
 | `improve-architecture` | 69 | 889 | 1,428 |
+| `show-it` | 59 | 954 | 1,416 |
 | `domain-docs` | 105 | 872 | 1,409 |
 | `to-spec` | 105 | 878 | 1,401 |
 | `garmin` | 76 | 761 | 1,269 |
@@ -53,7 +55,7 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `prove-it` | 29 | 328 | 493 |
 | `interview` | 27 | 228 | 367 |
 | `handoff` | 24 | 173 | 257 |
-| **Total** | **1,281** | **13,528** | **21,124** |
+| **Total** | **1,280** | **13,450** | **20,979** |
 <!-- skill-sizes:end -->
 
 ### Requirements
@@ -87,11 +89,14 @@ For a batch of issues you'd rather not build by hand, **orchestrate-tdd** sits o
 
 **improve-architecture** feeds the front of this flow for existing codebases: it surveys the code, surfaces the strongest deepening opportunities as a visual HTML report, and stops. Take a chosen candidate into `grill-me` to design it, or `to-issues` to slice it.
 
+**show-it** is a display tool any flow can reach for: when a picture would land an idea faster than a paragraph (a layout, a chart, two designs side by side), it opens a live auto-refreshing browser page so the user sees what you mean while the conversation continues in the terminal. Triggers on "show it", "visualize this", or "render this".
+
 **handoff** supports this flow across sessions: when work spans multiple sessions or collaborators, write a handoff doc so a fresh session can pick up where the last one left off.
 
 ### Other
 
 - **garmin** → pull recent Garmin Connect activity data and summarize it.
+- **say-it** (plugin) → let Claude answer out loud via the local Voicebox app; off by default, toggled per project.
 
 ## Inspiration
 
