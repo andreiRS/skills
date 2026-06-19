@@ -36,8 +36,8 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | Skill | Lines | Words | ~Tokens |
 |---|--:|--:|--:|
 | `orchestrate-tdd` | 146 | 1,782 | 2,729 |
+| `say-it (plugin)` | 73 | 1,414 | 2,204 |
 | `implement-tdd` | 150 | 1,344 | 1,965 |
-| `say-it (plugin)` | 69 | 1,218 | 1,893 |
 | `show-it` | 60 | 1,032 | 1,561 |
 | `to-html` | 62 | 961 | 1,483 |
 | `improve-architecture` | 69 | 889 | 1,428 |
@@ -53,7 +53,7 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `prove-it` | 29 | 328 | 493 |
 | `interview` | 27 | 228 | 367 |
 | `handoff` | 24 | 173 | 257 |
-| **Total** | **1,277** | **13,247** | **20,692** |
+| **Total** | **1,281** | **13,443** | **21,003** |
 <!-- skill-sizes:end -->
 
 ### Requirements

@@ -11,7 +11,11 @@ Local spoken replies via the Voicebox app (HTTP MCP at `127.0.0.1:17493/mcp`); t
 
 Binary: **off by default** (text only), the user turns it **on**. On **every** toggle, mirror the state to the flag file so the Stop hook can see it: `echo <on|off> > /tmp/say-it-mode`.
 
-- **`/say-it`** (`on`, "voice on", "hands-free", "let's talk") → speak a 1-2 sentence gist of **every** reply, full text still on screen. Acknowledge with a short spoken confirmation. Write `on` to the flag file. (First speak of the session: launch Voicebox if needed, see "When it breaks".)
+**Preflight — voice must be connected (check before turning on, and before the first speak of any `on` session):** the `voicebox_*` tools come from a global MCP server (`~/.claude.json`), but a project can switch it off (its `disabledMcpjsonServers`) and a fresh session only binds the tools if Voicebox was running at session start. So `voicebox_speak` may simply not exist in this session. Before writing `on` (or speaking), confirm `voicebox_speak` is in your available tools. If it is **not**:
+  - Do **not** enable / do **not** try to speak. Write `off` to the flag file so the Stop hook stays quiet (the global flag may already say `on` from another session — that stale `on` is exactly what makes the hook nag here).
+  - Tell the user once, in text: voice can't run in this session because the Voicebox MCP isn't connected. If it's **missing everywhere**, add it to `~/.claude.json` (`mcpServers.voicebox`, type `http`, url `http://127.0.0.1:17493/mcp`) or via `/mcp`. If it's **disabled in this project**, remove `voicebox` from this project's `disabledMcpjsonServers` (or re-enable via `/mcp`) and start a fresh session. Either way the app must be running before the session starts.
+
+- **`/say-it`** (`on`, "voice on", "hands-free", "let's talk") → **run the preflight above first.** If connected: speak a 1-2 sentence gist of **every** reply, full text still on screen. Acknowledge with a short spoken confirmation. Write `on` to the flag file. (First speak of the session: launch Voicebox if needed, see "When it breaks".)
 - **`/say-it off`** (`mute`, "text only", "quiet", "stop talking") → no `speak` calls at all; per-message "say it" / `🔊` still honored. Acknowledge in text. Write `off` to the flag file.
 - **`/say-it status`** (or bare `/say-it` when already on) → say + show the current state.
 
