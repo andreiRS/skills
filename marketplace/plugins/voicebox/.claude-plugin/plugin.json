@@ -1,0 +1,11 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "voicebox",
+  "version": "1.0.0",
+  "description": "Spoken replies via the local Voicebox MCP app: a /voicebox toggle (all/auto/mute), the 'two channels, one answer' speaking rules, and a Stop hook that enforces the `all` mode.",
+  "author": {
+    "name": "Andrei Surdu",
+    "email": "andrei@surdu.eu"
+  },
+  "keywords": ["voice", "tts", "mcp", "voicebox"]
+}
