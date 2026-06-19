@@ -67,6 +67,8 @@ Most skills are prose-only and need nothing beyond Claude. These few shell out t
 | `bun` | `garmin`, `show-it`, installing `agent-browser` | [bun.sh](https://bun.sh) |
 | [`agent-browser`](https://agent-browser.dev) | `garmin`, `prove-it`, `break-it` | `bun add -g agent-browser && agent-browser install` |
 | Google Chrome (real app) | `garmin` | [google.com/chrome](https://www.google.com/chrome/) |
+| `python3` | `say-it` (hook + helper scripts), `to-html` (preview server) | preinstalled on macOS |
+| [Voicebox](https://github.com/jamiepine/voicebox) (desktop app) | `say-it` | see the [repo](https://github.com/jamiepine/voicebox); must be running for voice |
 
 `garmin` drives real Chrome with a persistent authenticated profile (to pass Garmin's Cloudflare bot check) and always runs headed — see its [SKILL.md](garmin/SKILL.md) for the one-time sign-in.
 
