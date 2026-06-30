@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
-# Print facts about the current Claude Code session as KEY=VALUE lines.
+# Print facts about a Claude Code session as KEY=VALUE lines.
 #
-# Resolves the session id from the environment, locates its transcript, derives
+# Usage: session-info.sh [session-id]
+#   - no arg: the current session (from CLAUDE_CODE_SESSION_ID)
+#   - session-id: that specific session (used by the session-recap skill)
+#
+# Resolves the session id from the argument or environment, locates its
+# transcript, derives
 # the start time (UTC -> local) and a resume command, and asks the Obsidian CLI
 # where today's daily note lives (so nothing about the vault is hardcoded — this
 # works for anyone who has the Obsidian CLI and a daily-notes setup).
@@ -14,16 +19,20 @@ vault_arg=()
 [ -n "${OBSIDIAN_VAULT:-}" ] && vault_arg=("vault=$OBSIDIAN_VAULT")
 
 # --- session id ---------------------------------------------------------------
-sid="${CLAUDE_CODE_SESSION_ID:-}"
+# An explicit id as $1 wins (used by session-recap to bookmark a past/other
+# session); otherwise fall back to the current session from the environment.
+sid="${1:-${CLAUDE_CODE_SESSION_ID:-}}"
 if [ -z "$sid" ]; then
-  echo "ERROR: CLAUDE_CODE_SESSION_ID is not set — this isn't running inside a Claude Code session." >&2
+  echo "ERROR: no session id given and CLAUDE_CODE_SESSION_ID is not set — pass a session id, or run inside a Claude Code session." >&2
   exit 1
 fi
 
 # --- transcript ---------------------------------------------------------------
 # Lives under ~/.claude/projects/<encoded-cwd>/<session-id>.jsonl. Glob by id so
 # we never have to reproduce the path-encoding scheme.
-transcript="$(ls -t "$HOME"/.claude/projects/*/"$sid".jsonl 2>/dev/null | head -1)"
+# `|| true`: a no-match glob makes the pipeline fail under pipefail, which would
+# exit before the friendly check below — swallow it so the [ -z ] error fires.
+transcript="$(ls -t "$HOME"/.claude/projects/*/"$sid".jsonl 2>/dev/null | head -1 || true)"
 if [ -z "$transcript" ]; then
   echo "ERROR: no transcript found for session $sid." >&2
   exit 1
@@ -31,14 +40,16 @@ fi
 
 # --- project dir + name -------------------------------------------------------
 # Use the cwd recorded in the transcript (robust even if you cd'd around).
-cwd="$(grep -o '"cwd":"[^"]*"' "$transcript" | head -1 | sed 's/.*:"//; s/"$//')"
+# -m1: grep stops after the first match and exits 0, so it isn't killed by
+# SIGPIPE when the downstream closes the pipe early (fatal under pipefail).
+cwd="$(grep -o -m1 '"cwd":"[^"]*"' "$transcript" | head -1 | sed 's/.*:"//; s/"$//')"
 proj="${cwd:-$PWD}"
 name="$(basename "$proj")"
 
 # --- start time (UTC -> local), cross-platform --------------------------------
 # Timestamps are UTC ISO8601 with milliseconds + trailing Z, e.g.
 # 2026-06-30T13:59:36.887Z. Strip to whole seconds, then format in local time.
-ts="$(grep -o '"timestamp":"[^"]*"' "$transcript" | head -1 | sed 's/.*:"//; s/"$//')"
+ts="$(grep -o -m1 '"timestamp":"[^"]*"' "$transcript" | head -1 | sed 's/.*:"//; s/"$//')"
 clean="${ts%.*}"
 if start_local="$(date -d "${clean}Z" "+%H:%M" 2>/dev/null)"; then
   : # GNU date

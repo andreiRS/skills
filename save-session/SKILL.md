@@ -11,8 +11,10 @@ Bookmark the current session into today's daily note so it can be resumed later.
 1. **Gather the facts.** Run the helper. It reads the live session id from the environment, finds the transcript, derives the start time, and — crucially — asks the Obsidian CLI where the daily note lives, so nothing about the vault is hardcoded:
 
    ```bash
-   ~/.claude/skills/save-session/scripts/session-info.sh
+   ~/.claude/skills/save-session/scripts/session-info.sh [session-id]
    ```
+
+   Omit the argument for the current session. Pass a session id to gather facts about a *different* session instead (the `session-recap` skill uses this to bookmark a past session it just summarized).
 
    It prints `SESSION_ID`, `PROJECT_DIR`, `PROJECT_NAME`, `START_LOCAL` (HH:MM, already converted from UTC to local), `DAILY_NOTE` (absolute path to today's note, resolved from the user's vault config and created if missing), and `RESUME_BASE` (the resume command *without* the `--remote-control` name — you add that in step 3).
 
