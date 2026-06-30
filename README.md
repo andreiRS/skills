@@ -26,6 +26,7 @@ A personal collection of reusable skills for Claude Code and other LLM tools. Th
 | [`break-it`](break-it/SKILL.md) | Adversarial exploratory testing — drive the running app to find the bugs a human QA would catch |
 | [`handoff`](handoff/SKILL.md) | Summarise the current conversation into a handoff doc for the next session |
 | [`save-session`](save-session/SKILL.md) | Bookmark the current session into the Obsidian daily note with a title, start time, summary, and a copy-paste `--remote-control` resume command |
+| [`session-recap`](session-recap/SKILL.md) | Summarize a day's Claude Code sessions across all projects, then offer to bookmark any of them via `save-session` |
 | [`to-atomic-commits`](to-atomic-commits/SKILL.md) | Split uncommitted changes into logical atomic commits, respecting detected commit conventions |
 | [`garmin`](garmin/SKILL.md) | Download Garmin Connect activity splits and summarize workouts |
 | [`brand-guidelines`](brand-guidelines/SKILL.md) | Apply Andrei's personal brand colors, typography, and visual style to any rendered artifact |
@@ -48,7 +49,8 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `to-spec` | 105 | 878 | 1,401 |
 | `garmin` | 76 | 761 | 1,269 |
 | `to-issues` | 102 | 728 | 1,132 |
-| `save-session` | 44 | 633 | 1,007 |
+| `save-session` | 46 | 666 | 1,060 |
+| `session-recap` | 47 | 622 | 985 |
 | `to-atomic-commits` | 81 | 591 | 937 |
 | `brand-guidelines` | 67 | 396 | 679 |
 | `break-it` | 37 | 386 | 619 |
@@ -57,7 +59,7 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `prove-it` | 29 | 328 | 493 |
 | `interview` | 27 | 228 | 367 |
 | `handoff` | 24 | 173 | 257 |
-| **Total** | **1,324** | **14,083** | **21,986** |
+| **Total** | **1,373** | **14,738** | **23,024** |
 <!-- skill-sizes:end -->
 
 ### Requirements
@@ -69,9 +71,9 @@ Most skills are prose-only and need nothing beyond Claude. These few shell out t
 | `bun` | `garmin`, `show-it`, installing `agent-browser` | [bun.sh](https://bun.sh) |
 | [`agent-browser`](https://agent-browser.dev) | `garmin`, `prove-it`, `break-it` | `bun add -g agent-browser && agent-browser install` |
 | Google Chrome (real app) | `garmin` | [google.com/chrome](https://www.google.com/chrome/) |
-| `python3` | `say-it` (hook + helper scripts), `to-html` (preview server) | preinstalled on macOS |
+| `python3` | `say-it` (hook + helper scripts), `to-html` (preview server), `session-recap` (digest script) | preinstalled on macOS |
 | [Voicebox](https://github.com/jamiepine/voicebox) (desktop app) | `say-it` | see the [repo](https://github.com/jamiepine/voicebox); must be running for voice |
-| [Obsidian](https://obsidian.md) (app + `obsidian` CLI) | `save-session` | app must be running; the CLI provides the daily-note location so nothing is hardcoded |
+| [Obsidian](https://obsidian.md) (app + `obsidian` CLI) | `save-session`, `session-recap` (optional save step) | app must be running; the CLI provides the daily-note location so nothing is hardcoded |
 
 `garmin` drives real Chrome with a persistent authenticated profile (to pass Garmin's Cloudflare bot check) and always runs headed — see its [SKILL.md](garmin/SKILL.md) for the one-time sign-in.
 
@@ -103,6 +105,7 @@ For a batch of issues you'd rather not build by hand, **orchestrate-tdd** sits o
 - **garmin** → pull recent Garmin Connect activity data and summarize it.
 - **say-it** (plugin) → let Claude answer out loud via the local Voicebox app; off by default, toggled per project.
 - **save-session** → bookmark the current Claude Code session into the Obsidian daily note with a copy-paste, remote-control-enabled resume command, so you can jump back in later from any terminal or your phone.
+- **session-recap** → summarize a day's Claude Code sessions across all projects (today, yesterday, or a date), then offer to bookmark any of them into the daily note via `save-session`.
 
 ## Inspiration
 
