@@ -6,17 +6,21 @@
 #   - session-id: that specific session (used by the session-recap skill)
 #
 # Resolves the session id from the argument or environment, locates its
-# transcript, derives
-# the start time (UTC -> local) and a resume command, and asks the Obsidian CLI
-# where today's daily note lives (so nothing about the vault is hardcoded — this
-# works for anyone who has the Obsidian CLI and a daily-notes setup).
+# transcript, derives the start time (UTC -> local) and a resume command, and
+# points at today's daily note in the journal vault configured below.
 #
-# Optional: set OBSIDIAN_VAULT to target a specific vault by name; otherwise the
-# active/default vault is used.
-set -euo pipefail
+# ┌─ CONFIGURE ME ──────────────────────────────────────────────────────────┐
+# │ This skill writes to ONE fixed journal vault, hardcoded here. Change     │
+# │ these three lines to point at your own vault / daily-note folder / date  │
+# │ format. We use a fixed path on purpose: asking the running Obsidian app  │
+# │ resolves against whatever vault is *active* and can yank focus to the    │
+# │ wrong vault (that was the "forge" bug).                                   │
+# └──────────────────────────────────────────────────────────────────────────┘
+JOURNAL_VAULT="$HOME/Brain"   # absolute path to the vault holding your journal
+JOURNAL_FOLDER="10-journal"   # daily-notes folder inside the vault ("" = root)
+JOURNAL_DATE_FMT="%Y-%m-%d"   # strftime format of the note filename (no .md)
 
-vault_arg=()
-[ -n "${OBSIDIAN_VAULT:-}" ] && vault_arg=("vault=$OBSIDIAN_VAULT")
+set -euo pipefail
 
 # --- session id ---------------------------------------------------------------
 # An explicit id as $1 wins (used by session-recap to bookmark a past/other
@@ -64,21 +68,20 @@ fi
 # skill appends --remote-control "<short title>" using the title it generates.
 resume_base="cd $proj && claude --resume $sid"
 
-# --- daily note via Obsidian CLI (no hardcoded vault/path) --------------------
-if ! command -v obsidian >/dev/null 2>&1; then
-  echo "ERROR: the 'obsidian' CLI isn't on PATH. The Obsidian app must be running and its CLI installed." >&2
+# --- daily note (fixed journal vault, see CONFIGURE ME above) -----------------
+if [ ! -d "$JOURNAL_VAULT" ]; then
+  echo "ERROR: journal vault not found at $JOURNAL_VAULT — edit JOURNAL_VAULT at the top of $0." >&2
   exit 1
 fi
-root="$(obsidian ${vault_arg[@]+"${vault_arg[@]}"} vault info=path 2>/dev/null || true)"
-rel="$(obsidian ${vault_arg[@]+"${vault_arg[@]}"} daily:path 2>/dev/null || true)"
-if [ -z "$root" ] || [ -z "$rel" ]; then
-  echo "ERROR: couldn't resolve the daily note via Obsidian. Is the app running (and the daily-notes plugin enabled)?" >&2
-  exit 1
+daily="$JOURNAL_VAULT${JOURNAL_FOLDER:+/$JOURNAL_FOLDER}/$(date "+$JOURNAL_DATE_FMT").md"
+
+# Create the note if it's missing so the skill can edit it. The daily-notes
+# plugin normally makes it (with your template) when Obsidian is open; this
+# fallback is a plain file so we never open the app / steal focus.
+if [ ! -f "$daily" ]; then
+  mkdir -p "$(dirname "$daily")"
+  : > "$daily"
 fi
-daily="$root/$rel"
-# Ensure the note exists so the skill can edit it (Obsidian creates it from the
-# configured template on open).
-[ -f "$daily" ] || obsidian ${vault_arg[@]+"${vault_arg[@]}"} daily >/dev/null 2>&1 || true
 
 cat <<EOF
 SESSION_ID=$sid

@@ -48,8 +48,8 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `domain-docs` | 105 | 872 | 1,409 |
 | `to-spec` | 105 | 878 | 1,401 |
 | `garmin` | 76 | 761 | 1,269 |
+| `save-session` | 56 | 760 | 1,206 |
 | `to-issues` | 102 | 728 | 1,132 |
-| `save-session` | 46 | 666 | 1,060 |
 | `session-recap` | 47 | 622 | 985 |
 | `to-atomic-commits` | 81 | 591 | 937 |
 | `brand-guidelines` | 67 | 396 | 679 |
@@ -59,7 +59,7 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `prove-it` | 29 | 328 | 493 |
 | `interview` | 27 | 228 | 367 |
 | `handoff` | 24 | 173 | 257 |
-| **Total** | **1,373** | **14,738** | **23,024** |
+| **Total** | **1,383** | **14,832** | **23,170** |
 <!-- skill-sizes:end -->
 
 ### Requirements
@@ -73,7 +73,7 @@ Most skills are prose-only and need nothing beyond Claude. These few shell out t
 | Google Chrome (real app) | `garmin` | [google.com/chrome](https://www.google.com/chrome/) |
 | `python3` | `say-it` (hook + helper scripts), `to-html` (preview server), `session-recap` (digest script) | preinstalled on macOS |
 | [Voicebox](https://github.com/jamiepine/voicebox) (desktop app) | `say-it` | see the [repo](https://github.com/jamiepine/voicebox); must be running for voice |
-| [Obsidian](https://obsidian.md) (app + `obsidian` CLI) | `save-session`, `session-recap` (optional save step) | app must be running; the CLI provides the daily-note location so nothing is hardcoded |
+| [Obsidian](https://obsidian.md) | `save-session`, `session-recap` (optional save step) | edit the `CONFIGURE ME` block in `save-session/scripts/session-info.sh` to point at your journal vault, folder, and date format |
 
 `garmin` drives real Chrome with a persistent authenticated profile (to pass Garmin's Cloudflare bot check) and always runs headed — see its [SKILL.md](garmin/SKILL.md) for the one-time sign-in.
 
