@@ -30,6 +30,7 @@ A personal collection of reusable skills for Claude Code and other LLM tools. Th
 | [`to-atomic-commits`](to-atomic-commits/SKILL.md) | Split uncommitted changes into logical atomic commits, respecting detected commit conventions |
 | [`garmin`](garmin/SKILL.md) | Download Garmin Connect activity splits and summarize workouts |
 | [`brand-guidelines`](brand-guidelines/SKILL.md) | Apply Andrei's personal brand colors, typography, and visual style to any rendered artifact |
+| [`fable-mode`](fable-mode/SKILL.md) | Make any model operate with Fable 5's judgment, planning, verification, and reasoning habits ("fable mode") |
 | [`say-it`](marketplace/plugins/say-it/skills/say-it/SKILL.md) (plugin) | Let Claude answer out loud via the local Voicebox app; off by default, toggled per project |
 
 ### Size at a glance
@@ -49,6 +50,7 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `to-spec` | 105 | 878 | 1,401 |
 | `garmin` | 76 | 761 | 1,269 |
 | `save-session` | 56 | 760 | 1,206 |
+| `fable-mode` | 46 | 807 | 1,172 |
 | `to-issues` | 102 | 728 | 1,132 |
 | `session-recap` | 47 | 622 | 985 |
 | `to-atomic-commits` | 81 | 591 | 937 |
@@ -59,7 +61,7 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `prove-it` | 29 | 328 | 493 |
 | `interview` | 27 | 228 | 367 |
 | `handoff` | 24 | 173 | 257 |
-| **Total** | **1,383** | **14,832** | **23,170** |
+| **Total** | **1,429** | **15,639** | **24,342** |
 <!-- skill-sizes:end -->
 
 ### Requirements
@@ -102,6 +104,7 @@ For a batch of issues you'd rather not build by hand, **orchestrate-tdd** sits o
 
 ### Other
 
+- **fable-mode** → a behavioral overlay for weaker or faster models: say "fable mode" and the session adopts Fable 5's working habits (evidence before action, verify by running things, lead with the outcome, finish the turn). Stays on until "fable mode off".
 - **garmin** → pull recent Garmin Connect activity data and summarize it.
 - **say-it** (plugin) → let Claude answer out loud via the local Voicebox app; off by default, toggled per project.
 - **save-session** → bookmark the current Claude Code session into the Obsidian daily note with a copy-paste, remote-control-enabled resume command, so you can jump back in later from any terminal or your phone.
