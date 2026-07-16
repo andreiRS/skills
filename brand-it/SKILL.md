@@ -1,5 +1,5 @@
 ---
-name: brand-guidelines
+name: brand-it
 description: Applies Andrei's personal brand colors, typography, and visual style to any visual artifact — HTML pages, React components, dashboards, slides, charts, or any rendered output. Use when producing something visual and no other style is specified, or when the user asks for brand colors, design standards, or "make it look right".
 ---
 
@@ -48,6 +48,7 @@ For a manual toggle, mirror the light values under a `[data-theme="light"]` sele
 - Headings: **Inter** 600–700
 - Body: **Inter** 400, line-height 1.6
 - Code: **JetBrains Mono**
+- **Adornments follow the text they sit with.** Section numbers, list markers, badges, and step counters use the heading/body typeface (Inter), not the mono. Reserve JetBrains Mono for actual code, paths, and terminal-style labels — a stray mono numeral next to an Inter heading reads as a mistake.
 
 Load from a CDN (e.g. Google Fonts / `fonts.bunny.net`) with a system-font fallback stack so the artifact still reads correctly offline.
 

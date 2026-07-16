@@ -19,18 +19,23 @@ A personal collection of reusable skills for Claude Code and other LLM tools. Th
 | [`improve-architecture`](improve-architecture/SKILL.md) | Find deepening opportunities (shallow→deep modules) and present them as a visual HTML report |
 | [`to-html`](to-html/SKILL.md) | Render what's been discussed as a single self-contained HTML page — explainer, matrix, dashboard, cheat-sheet |
 | [`show-it`](show-it/SKILL.md) | Show an idea in a live auto-refreshing browser page — mockups, comparisons, charts, layouts — so a picture lands it faster than a paragraph |
+| [`explain-diff`](explain-diff/SKILL.md) | Teach how a diff, branch, or PR works as a self-contained interactive HTML page — background, intuition, code walkthrough, diagrams, and a quiz (adapted from Geoffrey Litt) |
+| [`explain-topic`](explain-topic/SKILL.md) | Sibling of `explain-diff` for non-code — teach a topic, decision, or design worked out in the conversation as a self-contained interactive HTML page with a quiz |
 | [`to-issues`](to-issues/SKILL.md) | Break a plan or spec into independently-grabbable issues as thin vertical slices |
 | [`implement-tdd`](implement-tdd/SKILL.md) | Build an existing plan test-first, one behavior at a time, red-green-refactor |
 | [`orchestrate-tdd`](orchestrate-tdd/SKILL.md) | Drive a list of issues to completion by spawning one TDD agent per slice, sizing the model, verifying and reviewing each result |
 | [`prove-it`](prove-it/SKILL.md) | Drive the running app like a human to confirm the changed flows work end to end (pass/fail verdict) |
 | [`break-it`](break-it/SKILL.md) | Adversarial exploratory testing — drive the running app to find the bugs a human QA would catch |
 | [`handoff`](handoff/SKILL.md) | Summarise the current conversation into a handoff doc for the next session |
+| [`handoff-cowork`](handoff-cowork/SKILL.md) | Cowork variant of `handoff` — writes the doc to the scratchpad, presents it, and gives a paste prompt for a fresh Cowork chat |
 | [`save-session`](save-session/SKILL.md) | Bookmark the current session into the Obsidian daily note with a title, start time, summary, and a copy-paste `--remote-control` resume command |
 | [`session-recap`](session-recap/SKILL.md) | Summarize a day's Claude Code sessions across all projects, then offer to bookmark any of them via `save-session` |
 | [`weekly-claude-reflection`](weekly-claude-reflection/SKILL.md) | Weekly retro on the memories + CLAUDE.md across all projects — promote recurring lessons to global, prune stale, dedupe, flag conflicts; nothing changes without confirmation |
 | [`to-atomic-commits`](to-atomic-commits/SKILL.md) | Split uncommitted changes into logical atomic commits, respecting detected commit conventions |
 | [`garmin`](garmin/SKILL.md) | Download Garmin Connect activity splits and summarize workouts |
-| [`brand-guidelines`](brand-guidelines/SKILL.md) | Apply Andrei's personal brand colors, typography, and visual style to any rendered artifact |
+| [`brand-it`](brand-it/SKILL.md) | Apply Andrei's personal brand colors, typography, and visual style to any rendered artifact |
+| [`polish-ux`](polish-ux/SKILL.md) | Review-and-fix pass over an HTML artifact — verify it renders, then fix layout, interaction states, consistency, and accessibility defects |
+| [`brand-it-cowork`](brand-it-cowork/SKILL.md) | Cowork variant of `brand-it` — maps the brand onto each Cowork surface (live artifacts, inline `show_widget`, HTML/React artifacts, pptx/docx/pdf) and their constraints |
 | [`fable-mode`](fable-mode/SKILL.md) | Make any model operate with Fable 5's judgment, planning, verification, and reasoning habits ("fable mode") |
 | [`say-it`](marketplace/plugins/say-it/skills/say-it/SKILL.md) (plugin) | Let Claude answer out loud via the local Voicebox app; off by default, toggled per project |
 
@@ -44,26 +49,31 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `orchestrate-tdd` | 146 | 1,782 | 2,729 |
 | `say-it (plugin)` | 73 | 1,499 | 2,325 |
 | `implement-tdd` | 150 | 1,344 | 1,965 |
-| `to-html` | 62 | 961 | 1,483 |
+| `explain-topic` | 54 | 950 | 1,524 |
+| `to-html` | 62 | 961 | 1,481 |
 | `weekly-claude-reflection` | 56 | 836 | 1,436 |
 | `improve-architecture` | 69 | 889 | 1,428 |
 | `show-it` | 59 | 954 | 1,416 |
 | `domain-docs` | 105 | 872 | 1,409 |
 | `to-spec` | 105 | 878 | 1,401 |
+| `brand-it-cowork` | 62 | 835 | 1,400 |
+| `explain-diff` | 54 | 844 | 1,378 |
 | `garmin` | 76 | 761 | 1,269 |
 | `save-session` | 56 | 760 | 1,206 |
 | `fable-mode` | 46 | 807 | 1,172 |
 | `to-issues` | 102 | 728 | 1,132 |
 | `session-recap` | 47 | 622 | 985 |
 | `to-atomic-commits` | 81 | 591 | 937 |
-| `brand-guidelines` | 67 | 396 | 679 |
+| `polish-ux` | 37 | 519 | 857 |
+| `brand-it` | 68 | 444 | 752 |
+| `handoff-cowork` | 33 | 471 | 676 |
 | `break-it` | 37 | 386 | 619 |
 | `grill-me` | 31 | 359 | 567 |
 | `poke-holes` | 37 | 321 | 503 |
 | `prove-it` | 29 | 328 | 493 |
 | `interview` | 27 | 228 | 367 |
 | `handoff` | 24 | 173 | 257 |
-| **Total** | **1,485** | **16,475** | **25,778** |
+| **Total** | **1,726** | **20,142** | **31,684** |
 <!-- skill-sizes:end -->
 
 ### Requirements
@@ -73,9 +83,9 @@ Most skills are prose-only and need nothing beyond Claude. These few shell out t
 | Tool | Used by | Install |
 |---|---|---|
 | `bun` | `garmin`, `show-it`, installing `agent-browser` | [bun.sh](https://bun.sh) |
-| [`agent-browser`](https://agent-browser.dev) | `garmin`, `prove-it`, `break-it` | `bun add -g agent-browser && agent-browser install` |
+| [`agent-browser`](https://agent-browser.dev) | `garmin`, `prove-it`, `break-it`, `polish-ux` | `bun add -g agent-browser && agent-browser install` |
 | Google Chrome (real app) | `garmin` | [google.com/chrome](https://www.google.com/chrome/) |
-| `python3` | `say-it` (hook + helper scripts), `to-html` (preview server), `session-recap` (digest script), `weekly-claude-reflection` (inventory script) | preinstalled on macOS |
+| `python3` | `say-it` (hook + helper scripts), `to-html` + `polish-ux` (preview server), `session-recap` (digest script), `weekly-claude-reflection` (inventory script) | preinstalled on macOS |
 | [Voicebox](https://github.com/jamiepine/voicebox) (desktop app) | `say-it` | see the [repo](https://github.com/jamiepine/voicebox); must be running for voice |
 | [Obsidian](https://obsidian.md) | `save-session`, `session-recap` (optional save step), `weekly-claude-reflection` (autonomous handoff) | edit the `CONFIGURE ME` block in `save-session/scripts/session-info.sh` to point at your journal vault, folder, and date format |
 
@@ -102,6 +112,12 @@ For a batch of issues you'd rather not build by hand, **orchestrate-tdd** sits o
 
 **show-it** is a display tool any flow can reach for: when a picture would land an idea faster than a paragraph (a layout, a chart, two designs side by side), it opens a live auto-refreshing browser page so the user sees what you mean while the conversation continues in the terminal. Triggers on "show it", "visualize this", or "render this".
 
+**explain-diff** is the deep-explainer for a code change: point it at a diff, branch, or PR and it produces a self-contained interactive HTML page (background → intuition → code walkthrough → diagrams → a five-question quiz). Where `to-html` renders whatever's been discussed, `explain-diff` is the focused "teach how this change works, then quiz me on it" variant. Adapted from Geoffrey Litt's gist, with the quiz anti-gaming rules (deterministic option shuffle, length-matched options) folded in from community feedback.
+
+**explain-topic** is its non-code sibling: same teaching spine and quiz, but the subject is something worked out in the conversation (an architecture, a decision and its trade-offs, a researched topic, a hard concept) rather than a diff. It grounds the page in what was actually said plus anything readable, and marks gaps instead of inventing them. Reach for `to-html` when you just want the discussion rendered; reach for `explain-topic` when you want it *taught*, with a quiz.
+
+**polish-ux** is the craft pass for any of these HTML outputs. Where `brand-it` owns the visual identity (tokens, fonts, color meaning), `polish-ux` checks the page is actually built well: it serves and screenshots the page to prove it renders, then fixes the recurring defects (broken layout, missing hover/focus/disabled states, mismatched type, accessibility gaps). Run it on output from `to-html`, `show-it`, `explain-diff`, `explain-topic`, or `improve-architecture` before handing it off.
+
 **handoff** supports this flow across sessions: when work spans multiple sessions or collaborators, write a handoff doc so a fresh session can pick up where the last one left off.
 
 ### Other
@@ -118,6 +134,7 @@ This collection draws on the ideas, structure, and conventions of:
 
 - **Anthropic** — the official skills repo: [anthropics/skills](https://github.com/anthropics/skills)
 - **Matt Pocock** — [mattpocock/skills](https://github.com/mattpocock/skills)
+- **Geoffrey Litt** — [`explain-diff`](https://gist.github.com/geoffreylitt/a29df1b5f9865506e8952488eac3d524) is adapted from his gist; the quiz anti-gaming rules fold in [community feedback](https://gist.github.com/geoffreylitt/a29df1b5f9865506e8952488eac3d524#comments) on the original
 
 ## Connect
 

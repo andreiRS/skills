@@ -59,4 +59,4 @@ Treat the page as a living artifact, not a one-shot. Remember the path you just 
 
 Make it genuinely nicer to read than the chat: clear hierarchy, generous spacing, a restrained palette, real content density without clutter. The page should look intentional, not like a default template.
 
-**Use the `brand-guidelines` skill for the visual identity** — its colour tokens, typography (Inter / JetBrains Mono), and rules are the default look for these pages. Dark mode first with a light mode alongside, headings in body-text colour, semantic colours for meaning only. Only depart from it when the user asks for a different style or the content has its own palette (e.g. an annotated diff using a project's syntax theme).
+**Use the `brand-it` skill for the visual identity** — its colour tokens, typography (Inter / JetBrains Mono), and rules are the default look for these pages. Dark mode first with a light mode alongside, headings in body-text colour, semantic colours for meaning only. Only depart from it when the user asks for a different style or the content has its own palette (e.g. an annotated diff using a project's syntax theme).
