@@ -45,7 +45,7 @@ For a manual toggle, mirror the light values under a `[data-theme="light"]` sele
 
 ## Typography
 
-- Headings: **Inter** 600–700
+- Headings: **Inter** 600–700, line-height ~1.15–1.25 (tighter than body)
 - Body: **Inter** 400, line-height 1.6
 - Code: **JetBrains Mono**
 - **Adornments follow the text they sit with.** Section numbers, list markers, badges, and step counters use the heading/body typeface (Inter), not the mono. Reserve JetBrains Mono for actual code, paths, and terminal-style labels — a stray mono numeral next to an Inter heading reads as a mistake.
