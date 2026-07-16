@@ -49,6 +49,7 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `orchestrate-tdd` | 146 | 1,782 | 2,729 |
 | `say-it (plugin)` | 73 | 1,499 | 2,325 |
 | `implement-tdd` | 150 | 1,344 | 1,965 |
+| `polish-ux` | 44 | 960 | 1,553 |
 | `explain-topic` | 54 | 950 | 1,524 |
 | `to-html` | 62 | 961 | 1,481 |
 | `weekly-claude-reflection` | 56 | 836 | 1,436 |
@@ -64,8 +65,7 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `to-issues` | 102 | 728 | 1,132 |
 | `session-recap` | 47 | 622 | 985 |
 | `to-atomic-commits` | 81 | 591 | 937 |
-| `polish-ux` | 37 | 519 | 857 |
-| `brand-it` | 68 | 444 | 752 |
+| `brand-it` | 68 | 449 | 764 |
 | `handoff-cowork` | 33 | 471 | 676 |
 | `break-it` | 37 | 386 | 619 |
 | `grill-me` | 31 | 359 | 567 |
@@ -73,7 +73,7 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `prove-it` | 29 | 328 | 493 |
 | `interview` | 27 | 228 | 367 |
 | `handoff` | 24 | 173 | 257 |
-| **Total** | **1,726** | **20,142** | **31,684** |
+| **Total** | **1,733** | **20,588** | **32,392** |
 <!-- skill-sizes:end -->
 
 ### Requirements
