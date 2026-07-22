@@ -63,17 +63,17 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `save-session` | 56 | 760 | 1,206 |
 | `fable-mode` | 46 | 807 | 1,172 |
 | `to-issues` | 102 | 728 | 1,132 |
+| `handoff-cowork` | 49 | 752 | 1,122 |
 | `session-recap` | 47 | 622 | 985 |
 | `to-atomic-commits` | 81 | 591 | 937 |
 | `brand-it` | 68 | 449 | 764 |
-| `handoff-cowork` | 33 | 471 | 676 |
 | `break-it` | 37 | 386 | 619 |
 | `grill-me` | 31 | 359 | 567 |
 | `poke-holes` | 37 | 321 | 503 |
 | `prove-it` | 29 | 328 | 493 |
 | `interview` | 27 | 228 | 367 |
 | `handoff` | 24 | 173 | 257 |
-| **Total** | **1,733** | **20,588** | **32,392** |
+| **Total** | **1,749** | **20,869** | **32,838** |
 <!-- skill-sizes:end -->
 
 ### Requirements
