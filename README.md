@@ -11,6 +11,7 @@ A personal collection of reusable skills for Claude Code and other LLM tools. Th
 
 | Skill | Description |
 |---|---|
+| [`spike-it`](spike-it/SKILL.md) | Answer one technical question with throwaway code — scrappy prototype outside the repo, report the learning, drop the code |
 | [`interview`](interview/SKILL.md) | High-level interview to align on the shape of a plan (~3-6 questions) |
 | [`poke-holes`](poke-holes/SKILL.md) | Focused review that hunts for weak spots and hidden assumptions (~6-12 questions) |
 | [`grill-me`](grill-me/SKILL.md) | Exhaustive walk of every branch of the decision tree, hands off to `to-spec` |
@@ -69,13 +70,14 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `to-atomic-commits` | 81 | 591 | 937 |
 | `brand-it` | 68 | 449 | 764 |
 | `break-it` | 37 | 386 | 619 |
+| `spike-it` | 37 | 414 | 617 |
 | `grill-me` | 31 | 359 | 567 |
 | `poke-holes` | 37 | 321 | 503 |
 | `prove-it` | 29 | 328 | 493 |
 | `wrap-up` | 28 | 271 | 400 |
 | `interview` | 27 | 228 | 367 |
 | `handoff` | 24 | 173 | 257 |
-| **Total** | **1,777** | **21,140** | **33,238** |
+| **Total** | **1,814** | **21,554** | **33,855** |
 <!-- skill-sizes:end -->
 
 ### Requirements
@@ -107,6 +109,8 @@ The plan-and-build skills chain together. Pick the review depth that fits, turn 
 5. **Check it in the real app** — once it's built and the suite is green, drive the running app like a human: **prove-it** confirms the changed flows work end to end; **break-it** throws nasty inputs and edge cases at them to find what a human QA would catch. Distinct from the test suite (`implement-tdd`/`orchestrate-tdd`) — this is the manual, browser-driven pass.
 
 For a batch of issues you'd rather not build by hand, **orchestrate-tdd** sits one level above `implement-tdd`: instead of coding, it spawns one agent per slice (running `implement-tdd` on that slice), sizes each to the cheapest model that fits, then independently re-runs the tests and reviews the diff before advancing. Reviews are tier-gated (skip trivial, `simplify` for simple, `code-review` for complex, plus a final cross-slice pass), failures retry then escalate to the most-capable model, and it writes status back to the tracker as each slice lands. Use it to drive a whole `to-issues` backlog to a reviewed branch autonomously.
+
+**spike-it** sits before step 1, for when the plan can't be shaped until a technical question is answered. It writes deliberately throwaway code in the scratchpad (never in the repo), runs it, and reports the answer with evidence, then drops the code. The learning is the artifact; hand it on to `to-spec`, `domain-docs`, or `to-issues`.
 
 **domain-docs** runs alongside this flow as the keeper of durable domain knowledge: the `GLOSSARY.md` glossary and `docs/adr/` decision records. `grill-me` and `to-spec` flag fuzzy terms and hard-to-reverse decisions and point here to record them; it also works standalone.
 
