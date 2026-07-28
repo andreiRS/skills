@@ -26,6 +26,7 @@ A personal collection of reusable skills for Claude Code and other LLM tools. Th
 | [`orchestrate-tdd`](orchestrate-tdd/SKILL.md) | Drive a list of issues to completion by spawning one TDD agent per slice, sizing the model, verifying and reviewing each result |
 | [`prove-it`](prove-it/SKILL.md) | Drive the running app like a human to confirm the changed flows work end to end (pass/fail verdict) |
 | [`break-it`](break-it/SKILL.md) | Adversarial exploratory testing — drive the running app to find the bugs a human QA would catch |
+| [`wrap-up`](wrap-up/SKILL.md) | Close out the session in chat — why it started, what got done, what changed, what was decided, what's open, and the next step |
 | [`handoff`](handoff/SKILL.md) | Summarise the current conversation into a handoff doc for the next session |
 | [`handoff-cowork`](handoff-cowork/SKILL.md) | Cowork variant of `handoff` — writes the doc to the scratchpad, presents it, and gives a paste prompt for a fresh Cowork chat |
 | [`save-session`](save-session/SKILL.md) | Bookmark the current session into the Obsidian daily note with a title, start time, summary, and a copy-paste `--remote-control` resume command |
@@ -71,9 +72,10 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `grill-me` | 31 | 359 | 567 |
 | `poke-holes` | 37 | 321 | 503 |
 | `prove-it` | 29 | 328 | 493 |
+| `wrap-up` | 28 | 271 | 400 |
 | `interview` | 27 | 228 | 367 |
 | `handoff` | 24 | 173 | 257 |
-| **Total** | **1,749** | **20,869** | **32,838** |
+| **Total** | **1,777** | **21,140** | **33,238** |
 <!-- skill-sizes:end -->
 
 ### Requirements
@@ -118,7 +120,7 @@ For a batch of issues you'd rather not build by hand, **orchestrate-tdd** sits o
 
 **polish-ux** is the craft pass for any of these HTML outputs. Where `brand-it` owns the visual identity (tokens, fonts, color meaning), `polish-ux` checks the page is actually built well: it serves and screenshots the page to prove it renders, then fixes the recurring defects (broken layout, missing hover/focus/disabled states, mismatched type, accessibility gaps). Run it on output from `to-html`, `show-it`, `explain-diff`, `explain-topic`, or `improve-architecture` before handing it off.
 
-**handoff** supports this flow across sessions: when work spans multiple sessions or collaborators, write a handoff doc so a fresh session can pick up where the last one left off.
+**wrap-up** closes the session for *you*: a one-screen summary in chat covering why the work started, what got done, what changed, what was decided, what's still open, and the single next step. **handoff** covers the other audience: when work spans multiple sessions or collaborators, it writes a doc so a fresh agent can pick up where the last one left off.
 
 ### Other
 
