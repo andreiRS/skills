@@ -53,7 +53,7 @@ Aim to end with the **strongest 3-6 candidates** — not every theoretical refac
 
 ### 3. Write the HTML report
 
-Write a self-contained HTML file to the OS temp dir so nothing lands in the repo. Resolve the temp dir from `$TMPDIR`, falling back to `/tmp` (or `%TEMP%` on Windows), and write to `<tmpdir>/architecture-review-<timestamp>.html`. Open it — `open <path>` on macOS, `xdg-open <path>` on Linux, `start <path>` on Windows — and tell the user the absolute path.
+Write a self-contained HTML file to a scratch dir so nothing lands in the repo — the session scratchpad if there is one, otherwise `mktemp -d` — named `architecture-review-<timestamp>.html`. Open it — `open <path>` on macOS, `xdg-open <path>` on Linux, `start <path>` on Windows — and tell the user the absolute path.
 
 **Render the report exactly per [HTML-REPORT.md](HTML-REPORT.md)** — it owns the scaffold, the candidate-card spec, the diagram patterns, the styling, and the tone. Don't restate the card fields here; follow that file. In short: Tailwind + Mermaid via CDN, one card per candidate with a before/after diagram doing the heavy lifting, a strength badge (`Strong` / `Worth exploring` / `Speculative`), and a closing **Top recommendation** section.
 

@@ -14,7 +14,7 @@ Sibling of `explain-diff`: same teaching spine and quiz, but the source of truth
 1. **Pick the subject.** The target is usually the thing just worked out — a design, a decision, a researched answer, a concept explained. If the thread covered several things, or the scope is ambiguous, confirm what to explain before building rather than guessing.
 2. **Ground and enrich.** Base the page on what was actually said, plus any files, URLs, docs, or tool output you can read. Trace claims to their source. Where the conversation only implies something, mark it as inference; where a detail is missing, write `— not established —` rather than inventing a tidy version that was never decided.
 3. **Draft the narrative before writing HTML:** what problem or context motivates the topic, the smallest useful mental model, the concrete details that make it real, and the edge cases, trade-offs, and open questions.
-4. **Write one self-contained HTML file** — inline CSS/JS, no external fonts, CDNs, images, or network. Save it outside the repo at `/tmp/YYYY-MM-DD-explanation-<slug>.html` — plain `/tmp`, the standard temp location, so it stays ephemeral and easy to find.
+4. **Write one self-contained HTML file** — inline CSS/JS, no external fonts, CDNs, images, or network. Save it outside the repo as `YYYY-MM-DD-explanation-<slug>.html` in a scratch dir — the session scratchpad if there is one, otherwise `mktemp -d`.
 5. **Validate before handoff:** confirm the file exists, is a complete document with no external assets, has working quiz interactions, and passes the quiz and code-block checks below. Serve the temp dir over a throwaway local server and screenshot it (the browser blocks `file://`) rather than trusting the markup blind.
 
 ## Required page structure

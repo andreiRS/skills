@@ -47,7 +47,7 @@ Always-on, no need to ask: **responsive** (phone → wide screen) and **light in
 
 - **One self-contained file.** Inline the CSS and JS. No build step.
 - **CDNs are allowed** (Tailwind, Mermaid, Chart.js) when they earn their place — but be honest about the tradeoff: **the core layout and content must be readable with no network**; charts and diagrams that depend on a CDN simply won't appear offline, so never put load-bearing information *only* inside them. Don't pull a CDN for something a few lines of CSS would do.
-- **Write to a temp dir, then open it.** Resolve from `$TMPDIR`, falling back to `/tmp` (`%TEMP%` on Windows); name it `<tmpdir>/to-html-<slug>-<timestamp>.html`. Open with `open` (macOS), `xdg-open` (Linux), or `start` (Windows). Nothing lands in the repo unless the user asks.
+- **Write to a scratch dir, then open it.** Use the session scratchpad if there is one, otherwise `mktemp -d`; name the file `to-html-<slug>-<timestamp>.html`. Open with `open` (macOS), `xdg-open` (Linux), or `start` (Windows). Nothing lands in the repo unless the user asks.
 - **Verify before claiming done.** A typo in the JS or a layout that collapses on mobile opens as a blank or broken page. Sanity-check the markup, and for anything with non-trivial JS, screenshot it (the `playwright-cli` skill) before reporting success — don't report a page you haven't confirmed renders. The browser blocks `file://` URLs, so serve the temp dir over a throwaway local server first (`python3 -m http.server <port>` in that dir) and point the browser at `http://localhost:<port>/<file>`; stop the server when done. A lone `favicon.ico` 404 in the console is expected and harmless.
 - **Report the absolute path** after opening.
 

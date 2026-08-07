@@ -25,10 +25,10 @@ When you show more than one thing to compare (two layouts, three price curves), 
 
 Needs `bun` and an internet connection (the page pulls Tailwind, Chart.js, and fonts from a CDN).
 
-Pick a screen directory (a scratch dir is fine, e.g. `/tmp/show-it-<something>`) and start the server **in the background** so it survives across turns:
+Pick a screen directory — the session scratchpad if there is one, otherwise `mktemp -d` — and start the server **in the background** so it survives across turns:
 
 ```bash
-SCREEN_DIR=/tmp/show-it-demo PORT=52777 bun <skill-dir>/scripts/server.ts
+SCREEN_DIR=<scratch-dir>/show-it PORT=52777 bun <skill-dir>/scripts/server.ts
 ```
 
 It prints `show-it: visualization at http://localhost:52777`. Give the user that URL **once**; the tab never changes address after that. Omit `PORT` to let it pick a free port (read the printed line for the number). Stop it when the visual work is done by killing the process (`lsof -ti tcp:52777 | xargs kill`).

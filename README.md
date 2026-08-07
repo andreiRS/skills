@@ -27,6 +27,7 @@ A personal collection of reusable skills for Claude Code and other LLM tools. Th
 | [`orchestrate-tdd`](orchestrate-tdd/SKILL.md) | Drive a list of issues to completion by spawning one TDD agent per slice, sizing the model, verifying and reviewing each result |
 | [`prove-it`](prove-it/SKILL.md) | Drive the running app like a human to confirm the changed flows work end to end (pass/fail verdict) |
 | [`break-it`](break-it/SKILL.md) | Adversarial exploratory testing — drive the running app to find the bugs a human QA would catch |
+| [`sitrep`](sitrep/SKILL.md) | Mid-session status brief in chat — goal, why, what landed, what's in flight, what's blocked, the next step; writes nothing and doesn't end the session |
 | [`wrap-up`](wrap-up/SKILL.md) | Close out the session in chat — why it started, what got done, what changed, what was decided, what's open, and the next step |
 | [`handoff`](handoff/SKILL.md) | Summarise the current conversation into a handoff doc for the next session |
 | [`handoff-cowork`](handoff-cowork/SKILL.md) | Cowork variant of `handoff` — writes the doc to the scratchpad, presents it, and gives a paste prompt for a fresh Cowork chat |
@@ -52,15 +53,15 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `say-it (plugin)` | 73 | 1,499 | 2,325 |
 | `implement-tdd` | 150 | 1,344 | 1,965 |
 | `polish-ux` | 44 | 960 | 1,553 |
-| `explain-topic` | 54 | 950 | 1,524 |
-| `to-html` | 62 | 961 | 1,481 |
+| `explain-topic` | 54 | 950 | 1,523 |
+| `to-html` | 62 | 963 | 1,480 |
 | `weekly-claude-reflection` | 56 | 836 | 1,436 |
-| `improve-architecture` | 69 | 889 | 1,428 |
-| `show-it` | 59 | 954 | 1,416 |
+| `show-it` | 59 | 959 | 1,420 |
+| `improve-architecture` | 69 | 884 | 1,419 |
 | `domain-docs` | 105 | 872 | 1,409 |
 | `to-spec` | 105 | 878 | 1,401 |
 | `brand-it-cowork` | 62 | 835 | 1,400 |
-| `explain-diff` | 54 | 844 | 1,378 |
+| `explain-diff` | 54 | 844 | 1,376 |
 | `garmin` | 76 | 761 | 1,269 |
 | `save-session` | 56 | 760 | 1,206 |
 | `fable-mode` | 46 | 807 | 1,172 |
@@ -71,13 +72,14 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `brand-it` | 68 | 449 | 764 |
 | `break-it` | 37 | 386 | 619 |
 | `spike-it` | 37 | 414 | 617 |
-| `grill-me` | 31 | 359 | 567 |
+| `grill-me` | 32 | 401 | 608 |
 | `poke-holes` | 37 | 321 | 503 |
 | `prove-it` | 29 | 328 | 493 |
 | `wrap-up` | 28 | 271 | 400 |
+| `sitrep` | 30 | 277 | 388 |
 | `interview` | 27 | 228 | 367 |
-| `handoff` | 24 | 173 | 257 |
-| **Total** | **1,814** | **21,554** | **33,855** |
+| `handoff` | 26 | 204 | 311 |
+| **Total** | **1,847** | **21,906** | **34,329** |
 <!-- skill-sizes:end -->
 
 ### Requirements

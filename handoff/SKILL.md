@@ -4,7 +4,9 @@ description: Summarise the current conversation into a handoff document so a fre
 argument-hint: "What will the next session focus on?"
 ---
 
-Write a handoff document for this conversation and save it to the OS temp directory (not the current workspace).
+Write a handoff document for this conversation and save it to `~/.claude/handoffs/YYYY-MM-DD-<slug>.md`.
+
+That exact path, not the session scratchpad and not a temp dir: the whole point is that a **future** session reads this file, and the scratchpad is deleted when this session ends. Nothing lands in the current workspace.
 
 Include:
 

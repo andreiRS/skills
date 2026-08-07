@@ -14,7 +14,7 @@ Not a raw diff dump — a narrative that builds understanding. For a general-pur
 1. **Scope the change.** Use the current checkout, diff, branch, or PR as the source of truth. If the target is ambiguous, infer the most likely change and state the assumption on the page.
 2. **Explore around it.** Read the relevant callers, tests, config, data models, and docs. Trace the old and new paths far enough to explain behavior, not file-by-file edits. Prefer checked-in examples and tests over speculation.
 3. **Draft the narrative before writing HTML:** what motivated the change, how the old system behaved, the smallest useful mental model of the new behavior, how the code realizes it, and the edge cases and trade-offs.
-4. **Write one self-contained HTML file** — inline CSS/JS, no external fonts, CDNs, images, or network. Save it outside the repo at `/tmp/YYYY-MM-DD-explanation-<slug>.html` — plain `/tmp`, the standard temp location, so it stays ephemeral and easy to find.
+4. **Write one self-contained HTML file** — inline CSS/JS, no external fonts, CDNs, images, or network. Save it outside the repo as `YYYY-MM-DD-explanation-<slug>.html` in a scratch dir — the session scratchpad if there is one, otherwise `mktemp -d`.
 5. **Validate before handoff:** confirm the file exists, is a complete document with no external assets, has working quiz interactions, and passes the quiz and code-block checks below. Serve the temp dir over a throwaway local server and screenshot it (the browser blocks `file://`) rather than trusting the markup blind.
 
 ## Required page structure
