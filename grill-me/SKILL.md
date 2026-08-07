@@ -7,11 +7,12 @@ Interview the user relentlessly about every aspect of the plan until you reach a
 
 ## How to ask
 
-- Use the `AskUserQuestion` tool, **one question at a time**.
-- **Number each question** sequentially across the interview (Q1, Q2, Q3…) by putting it at the start of the question text.
-- For every question, **provide your recommended answer as the first option**, labeled "(Recommended)", with 1-3 alternatives. Put the tradeoff in each option's description.
+- Ask in chat, **one question at a time**. Pick the shape that fits the question: a closed choice, an open question, or a direct challenge to something the user said.
+- **Number each question** sequentially across the interview (Q1, Q2, Q3…).
+- Say what you would do and why, then ask. Name the real alternatives and the tradeoff between them so the user can just pick or push back.
 - Go in dependency order: resolve upstream decisions before the ones that depend on them.
 - Keep questions non-obvious. Skip anything trivial or already settled.
+- Follow the answer where it goes. If a reply opens a new branch or contradicts an earlier one, chase that instead of returning to your list.
 
 ## When to explore instead of ask
 
