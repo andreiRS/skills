@@ -55,7 +55,9 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `polish-ux` | 44 | 960 | 1,553 |
 | `explain-topic` | 54 | 950 | 1,523 |
 | `to-html` | 62 | 963 | 1,480 |
+| `brand-it` | 102 | 906 | 1,465 |
 | `weekly-claude-reflection` | 56 | 836 | 1,436 |
+| `save-session` | 62 | 917 | 1,422 |
 | `show-it` | 59 | 959 | 1,420 |
 | `improve-architecture` | 69 | 884 | 1,419 |
 | `domain-docs` | 105 | 872 | 1,409 |
@@ -63,13 +65,11 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `brand-it-cowork` | 62 | 835 | 1,400 |
 | `explain-diff` | 54 | 844 | 1,376 |
 | `garmin` | 76 | 761 | 1,269 |
-| `save-session` | 56 | 760 | 1,206 |
 | `fable-mode` | 46 | 807 | 1,172 |
 | `to-issues` | 102 | 728 | 1,132 |
 | `handoff-cowork` | 49 | 752 | 1,122 |
 | `session-recap` | 47 | 622 | 985 |
 | `to-atomic-commits` | 81 | 591 | 937 |
-| `brand-it` | 68 | 449 | 764 |
 | `break-it` | 37 | 386 | 619 |
 | `spike-it` | 37 | 414 | 617 |
 | `grill-me` | 32 | 401 | 608 |
@@ -79,7 +79,7 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `sitrep` | 30 | 277 | 388 |
 | `interview` | 27 | 228 | 367 |
 | `handoff` | 26 | 204 | 311 |
-| **Total** | **1,847** | **21,906** | **34,329** |
+| **Total** | **1,887** | **22,520** | **35,246** |
 <!-- skill-sizes:end -->
 
 ### Requirements
