@@ -27,6 +27,7 @@ A personal collection of reusable skills for Claude Code and other LLM tools. Th
 | [`orchestrate-tdd`](orchestrate-tdd/SKILL.md) | Drive a list of issues to completion by spawning one TDD agent per slice, sizing the model, verifying and reviewing each result |
 | [`prove-it`](prove-it/SKILL.md) | Drive the running app like a human to confirm the changed flows work end to end (pass/fail verdict) |
 | [`break-it`](break-it/SKILL.md) | Adversarial exploratory testing — drive the running app to find the bugs a human QA would catch |
+| [`record-it`](record-it/SKILL.md) | Record a Full HD MP4 demo of a flow in the running app, with a visible cursor, click ripples and captions |
 | [`sitrep`](sitrep/SKILL.md) | Mid-session status brief in chat — goal, why, what landed, what's in flight, what's blocked, the next step; writes nothing and doesn't end the session |
 | [`wrap-up`](wrap-up/SKILL.md) | Close out the session in chat — why it started, what got done, what changed, what was decided, what's open, and the next step |
 | [`handoff`](handoff/SKILL.md) | Summarise the current conversation into a handoff doc for the next session |
@@ -56,6 +57,7 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `explain-topic` | 54 | 950 | 1,523 |
 | `to-html` | 62 | 963 | 1,480 |
 | `brand-it` | 102 | 906 | 1,465 |
+| `record-it` | 71 | 987 | 1,445 |
 | `weekly-claude-reflection` | 56 | 836 | 1,436 |
 | `save-session` | 62 | 917 | 1,422 |
 | `show-it` | 59 | 959 | 1,420 |
@@ -79,7 +81,7 @@ Each skill's `SKILL.md` — the instruction prose only — measured to keep us h
 | `sitrep` | 30 | 277 | 388 |
 | `interview` | 27 | 228 | 367 |
 | `handoff` | 26 | 204 | 311 |
-| **Total** | **1,887** | **22,520** | **35,246** |
+| **Total** | **1,958** | **23,507** | **36,691** |
 <!-- skill-sizes:end -->
 
 ### Requirements
@@ -89,8 +91,9 @@ Most skills are prose-only and need nothing beyond Claude. These few shell out t
 | Tool | Used by | Install |
 |---|---|---|
 | `bun` | `garmin`, `show-it`, installing `agent-browser` | [bun.sh](https://bun.sh) |
-| [`agent-browser`](https://agent-browser.dev) | `garmin`, `prove-it`, `break-it`, `polish-ux` | `bun add -g agent-browser && agent-browser install` |
+| [`agent-browser`](https://agent-browser.dev) | `garmin`, `prove-it`, `break-it`, `polish-ux`, `record-it` | `bun add -g agent-browser && agent-browser install` |
 | Google Chrome (real app) | `garmin` | [google.com/chrome](https://www.google.com/chrome/) |
+| `ffmpeg` | `record-it` | `brew install ffmpeg` |
 | `python3` | `say-it` (hook + helper scripts), `to-html` + `polish-ux` (preview server), `session-recap` (digest script), `weekly-claude-reflection` (inventory script) | preinstalled on macOS |
 | [Voicebox](https://github.com/jamiepine/voicebox) (desktop app) | `say-it` | see the [repo](https://github.com/jamiepine/voicebox); must be running for voice |
 | [Obsidian](https://obsidian.md) | `save-session`, `session-recap` (optional save step), `weekly-claude-reflection` (autonomous handoff) | edit the `CONFIGURE ME` block in `save-session/scripts/session-info.sh` to point at your journal vault, folder, and date format |
